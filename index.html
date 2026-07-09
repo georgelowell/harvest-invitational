@@ -13,8 +13,9 @@
 <body>
   <header>
     <div class="header-inner">
-      <a href="/" class="logo">Lowell <span>Harvest Invitational</span></a>
+      <a href="/" class="logo"><img src="images/lowell-logo.png" alt="Lowell" style="height:28px; vertical-align:middle; margin-right:8px;"> <span>Harvest Invitational</span></a>
       <nav>
+        <a href="about.html">About</a>
         <a href="event.html">Event</a>
         <a href="venue.html">Venue</a>
         <a href="sponsors.html">Sponsors</a>
@@ -46,6 +47,7 @@
         Golf. Lunch from The Grove. Live music. Open consumption. All benefiting
         the Last Prisoner Project.
       </p>
+      <img src="https://images.unsplash.com/photo-1587174486073-ae5eac565387?w=1200&q=80" alt="Golf course fairway" style="width:100%; border-radius:12px; margin-top:2rem;" loading="lazy">
     </div>
   </section>
 
@@ -79,28 +81,34 @@
       <h2>Sponsors &amp; Partners</h2>
       <div class="sponsor-grid">
         <a href="sponsors/jaunty.html">
+          <img src="images/jaunty-logo.png" alt="Jaunty" style="max-height:40px; max-width:130px;">
           <span class="sponsor-name">Jaunty</span>
-          <span style="font-size:0.8rem; color:#888;">NY's #1 Vape Brand</span>
+          <span style="font-size:0.75rem; color:#888;">NY's #1 Vape Brand</span>
         </a>
         <a href="sponsors/wyld.html">
+          <img src="images/wyld-logo.png" alt="Wyld" style="max-height:40px; max-width:130px;">
           <span class="sponsor-name">Wyld</span>
-          <span style="font-size:0.8rem; color:#888;">America's #1 Gummy</span>
+          <span style="font-size:0.75rem; color:#888;">America's #1 Gummy</span>
         </a>
         <a href="sponsors/iheartjane.html">
+          <img src="images/iheartjane-logo.webp" alt="iHeartJane" style="max-height:40px; max-width:130px;">
           <span class="sponsor-name">iHeartJane</span>
-          <span style="font-size:0.8rem; color:#888;">Cannabis Commerce Platform</span>
+          <span style="font-size:0.75rem; color:#888;">Cannabis Commerce Platform</span>
         </a>
         <a href="sponsors/trustco.html">
+          <img src="images/trustco-logo.jpg" alt="TrustCo Bank" style="max-height:40px; max-width:130px;">
           <span class="sponsor-name">TrustCo Bank</span>
-          <span style="font-size:0.8rem; color:#888;">Your Home Town Bank</span>
+          <span style="font-size:0.75rem; color:#888;">Your Home Town Bank</span>
         </a>
         <a href="sponsors/layup.html">
+          <img src="images/layup-logo.jpeg" alt="Layup" style="max-height:40px; max-width:130px;">
           <span class="sponsor-name">Layup</span>
-          <span style="font-size:0.8rem; color:#888;">THC Beverages</span>
+          <span style="font-size:0.75rem; color:#888;">THC Beverages</span>
         </a>
         <a href="sponsors/last-prisoner-project.html">
+          <img src="images/lpp-logo.webp" alt="Last Prisoner Project" style="max-height:50px; max-width:130px;">
           <span class="sponsor-name">Last Prisoner Project</span>
-          <span style="font-size:0.8rem; color:#888;">Charity Partner</span>
+          <span style="font-size:0.75rem; color:#888;">Charity Partner</span>
         </a>
       </div>
       <p style="margin-top:1rem;"><a href="sponsors.html">Learn more about our sponsors →</a></p>
@@ -121,10 +129,33 @@
   </section>
 
   <section>
-    <div class="container text-center">
+    <div class="container">
       <p class="section-label">Hosted by</p>
-      <p style="font-size:1.5rem; font-weight:700; letter-spacing:-0.02em;">Lowell Herb Company</p>
-      <p style="color:#666;">Crafted with pride in New York's Hudson Valley</p>
+      <div style="display:flex; align-items:center; justify-content:center; gap:3rem; flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <p style="font-size:1.5rem; font-weight:700; letter-spacing:-0.02em;">Lowell Herb Company</p>
+          <p style="color:#666;">Crafted with pride in New York's Hudson Valley</p>
+        </div>
+        <div style="text-align:left; max-width:280px;">
+          <svg viewBox="0 0 200 200" style="width:180px; height:180px;">
+            <defs>
+              <linearGradient id="hvg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1b4332"/>
+                <stop offset="100%" style="stop-color:#52b788"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="95" fill="none" stroke="#2d6a4f" stroke-width="2"/>
+            <text x="100" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#2d6a4f" font-family="Inter,sans-serif">HUDSON</text>
+            <text x="100" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#2d6a4f" font-family="Inter,sans-serif">VALLEY</text>
+            <line x1="100" y1="65" x2="100" y2="85" stroke="#95d5b2" stroke-width="1.5"/>
+            <circle cx="100" cy="90" r="4" fill="#52b788"/>
+            <text x="100" y="105" text-anchor="middle" font-size="8" fill="#666" font-family="Inter,sans-serif">RED HOOK</text>
+            <line x1="35" y1="140" x2="165" y2="140" stroke="#d8f3dc" stroke-width="1"/>
+            <text x="100" y="158" text-anchor="middle" font-size="7" fill="#888" font-family="Inter,sans-serif">AUGUST 31, 2026</text>
+            <text x="100" y="172" text-anchor="middle" font-size="7" fill="#888" font-family="Inter,sans-serif">⛳ 18 HOLES · ☕ 26 TEAMS</text>
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
