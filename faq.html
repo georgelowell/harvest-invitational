@@ -32,16 +32,10 @@
     .quick-btns { display:flex; flex-wrap:wrap; gap:0.4rem; margin:0.5rem 0 0.75rem; }
     .quick-btn { background:#f0fdf4; border:1px solid #d8f3dc; border-radius:20px; padding:0.35rem 0.75rem; font-size:0.8rem; cursor:pointer; color:#2d6a4f; transition:all 0.2s; font-family:'Inter',sans-serif; }
     .quick-btn:hover { background:#d8f3dc; }
-    #chat-input-area { display:flex; padding:0.75rem; border-top:1px solid #e8e8e8; gap:0.5rem; }
-    #chat-input { flex:1; border:1px solid #ddd; border-radius:8px; padding:0.5rem 0.75rem; font-size:0.85rem; outline:none; font-family:'Inter',sans-serif; }
-    #chat-input:focus { border-color:#52b788; }
-    #chat-send { background:#2d6a4f; color:#fff; border:none; border-radius:8px; padding:0.5rem 1rem; cursor:pointer; font-weight:600; font-size:0.85rem; }
-    #chat-send:hover { background:#1b4332; }
     .chat-contact-form { background:#fafaf9; border-radius:8px; padding:0.75rem; margin-top:0.5rem; }
     .chat-contact-form input { width:100%; border:1px solid #ddd; border-radius:6px; padding:0.4rem 0.6rem; margin-bottom:0.4rem; font-size:0.8rem; font-family:'Inter',sans-serif; box-sizing:border-box; }
     .chat-contact-form input:focus { border-color:#52b788; outline:none; }
     .chat-contact-form button { background:#2d6a4f; color:#fff; border:none; border-radius:6px; padding:0.4rem 0.75rem; cursor:pointer; font-size:0.8rem; width:100%; font-weight:600; }
-    @media (max-width:480px) { #chat-box { width:300px; right:0; } }
   </style>
 </head>
 <body>
@@ -82,7 +76,7 @@
           <tr><td class="tier-name">Charity Alignment</td><td>Co-branded association with Last Prisoner Project — 100% net proceeds to freeing cannabis prisoners</td></tr>
           <tr><td class="tier-name">Dedicated About Page</td><td>Full page on the event website summarizing your brand, values, and link</td></tr>
         </table>
-        <p style="margin-top:1rem; color:#555; font-size:0.9rem;">Interested? <a href="javascript:void(0)" onclick="openChat()">Ask the bot below</a> or email <a href="mailto:info@lowellherbco.com">info@lowellherbco.com</a>.</p>
+        <p style="margin-top:1rem; color:#555; font-size:0.9rem;">Interested? <a href="sponsors.html">See our sponsor page →</a> or email <a href="mailto:info@lowellherbco.com">info@lowellherbco.com</a>.</p>
       </div>
 
       <p class="section-label">General</p>
@@ -130,34 +124,37 @@
     </div>
   </section>
 
-  <!-- CHAT WIDGET -->
-  <div id="chat-widget">
-    <div id="chat-box">
-      <div id="chat-header"><span>🤖 Ask the Event Bot</span><button onclick="toggleChat()">×</button></div>
-      <div id="chat-messages">
-        <div class="chat-msg bot"><div class="chat-bubble">Hey! I'm the <strong>Harvest Classic Cup</strong> assistant. I've been trained on everything discussed during event planning. Ask me about the format, teams, cost, schedule, sponsors, prizes, charity, eligibility, venue — anything. If I can't answer, I'll get you connected to someone who can.</div></div>
-        <div class="quick-btns" style="padding:0 1rem 0.5rem;">
-          <button class="quick-btn" onclick="quickAsk('How do I enter the lottery?')">🎟️ Lottery</button>
-          <button class="quick-btn" onclick="quickAsk('What is the schedule?')">⛳ Schedule</button>
-          <button class="quick-btn" onclick="quickAsk('How much does it cost?')">💰 Cost</button>
-          <button class="quick-btn" onclick="quickAsk('What do sponsors get?')">🤝 Sponsor</button>
-          <button class="quick-btn" onclick="quickAsk('Who are the sponsors?')">🏢 Partners</button>
+  <!-- ===== INLINE FAQ BOT ===== -->
+  <section class="alt">
+    <div class="container" style="max-width:800px;">
+      <p class="section-label">Ask the Event Bot</p>
+      <h2>Got a question?</h2>
+      <p>This bot has been trained on everything discussed during event planning — format, teams, cost, schedule, sponsors, prizes, charity, eligibility, venue. If it can't answer, it'll get you connected to someone who can.</p>
+      <div style="background:#fff; border-radius:16px; border:1px solid #e8e8e8; overflow:hidden; margin-top:1.5rem;">
+        <div style="background:#1b4332; color:#fff; padding:0.9rem 1.25rem; font-weight:600; font-size:0.95rem; display:flex; justify-content:space-between; align-items:center;">
+          <span>🤖 Harvest Classic Cup Assistant</span>
+        </div>
+        <div id="bot-messages" style="padding:1rem; max-height:300px; overflow-y:auto; min-height:200px;">
+          <div class="chat-msg bot"><div class="chat-bubble">Hey! I'm the <strong>Harvest Classic Cup</strong> assistant. Ask me anything about the event. Or click one of these:</div></div>
+          <div class="quick-btns" style="padding:0 0 0.5rem;">
+            <button class="quick-btn" onclick="quickAsk('How do I enter the lottery?')">🎟️ Lottery</button>
+            <button class="quick-btn" onclick="quickAsk('What is the schedule?')">⛳ Schedule</button>
+            <button class="quick-btn" onclick="quickAsk('How much does it cost?')">💰 Cost</button>
+            <button class="quick-btn" onclick="quickAsk('What do sponsors get?')">🤝 Sponsor</button>
+            <button class="quick-btn" onclick="quickAsk('Who are the sponsors?')">🏢 Partners</button>
+            <button class="quick-btn" onclick="quickAsk('What are the prizes?')">🏆 Prizes</button>
+          </div>
+        </div>
+        <div style="display:flex; padding:0.75rem; border-top:1px solid #e8e8e8; gap:0.5rem;">
+          <input type="text" id="bot-input" placeholder="Type your question..." style="flex:1; border:1px solid #ddd; border-radius:8px; padding:0.5rem 0.75rem; font-size:0.85rem; outline:none; font-family:'Inter',sans-serif;" onkeydown="if(event.key==='Enter') sendMsg()" onfocus="this.style.borderColor='#52b788'" onblur="this.style.borderColor='#ddd'">
+          <button onclick="sendMsg()" style="background:#2d6a4f; color:#fff; border:none; border-radius:8px; padding:0.5rem 1.25rem; cursor:pointer; font-weight:600; font-size:0.85rem;">Send</button>
         </div>
       </div>
-      <div id="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Type your question..." onkeydown="if(event.key==='Enter') sendMessage()">
-        <button id="chat-send" onclick="sendMessage()">Send</button>
-      </div>
     </div>
-    <button id="chat-toggle" onclick="toggleChat()">💬</button>
-  </div>
+  </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Lowell Herb Company. All rights reserved.</p>
-      <p style="margin-top:0.5rem;">Red Hook, NY &middot; <a href="mailto:info@lowellherbco.com">info@lowellherbco.com</a></p>
-    </div>
-  </footer>
+  <section>
+    <div class="container" style="max-width:800px;">
 
   <script>
     // ===== FULL EVENT KNOWLEDGE BASE =====
@@ -331,42 +328,27 @@
       return null;
     }
 
-    function toggleChat() {
-      const box = document.getElementById('chat-box');
-      const btn = document.getElementById('chat-toggle');
-      const open = !box.classList.contains('open');
-      box.classList.toggle('open', open);
-      btn.textContent = open ? '✕' : '💬';
-      if (open) document.getElementById('chat-input').focus();
-    }
-
-    function openChat() {
-      document.getElementById('chat-box').classList.add('open');
-      document.getElementById('chat-toggle').textContent = '✕';
-      document.getElementById('chat-input').focus();
-    }
-
     function quickAsk(q) {
-      document.getElementById('chat-input').value = q;
-      sendMessage();
+      document.getElementById('bot-input').value = q;
+      sendMsg();
     }
 
     function addBot(msg) {
-      const m = document.getElementById('chat-messages');
+      const m = document.getElementById('bot-messages');
       const d = document.createElement('div'); d.className = 'chat-msg bot';
       d.innerHTML = '<div class="chat-bubble">'+msg+'</div>';
       m.appendChild(d); m.scrollTop = m.scrollHeight;
     }
 
     function addUser(msg) {
-      const m = document.getElementById('chat-messages');
+      const m = document.getElementById('bot-messages');
       const d = document.createElement('div'); d.className = 'chat-msg user';
       d.innerHTML = '<div class="chat-bubble">'+msg+'</div>';
       m.appendChild(d); m.scrollTop = m.scrollHeight;
     }
 
     function showForm(q) {
-      const m = document.getElementById('chat-messages');
+      const m = document.getElementById('bot-messages');
       const d = document.createElement('div'); d.className = 'chat-msg bot';
       d.innerHTML = `<div class="chat-bubble"><strong>I don't have that information yet.</strong><br>I'll escalate this to the event team. Leave your details and I'll make sure you get a proper answer after I confer with the organizers.<div class="chat-contact-form"><input type="text" id="cf-name" placeholder="Your name"><input type="email" id="cf-email" placeholder="your@email.com"><input type="text" id="cf-q" value="${q.replace(/"/g,'&quot;')}" style="display:none;"><button onclick="submitForm()">✉️ Submit — I'll get back to you</button></div></div>`;
       m.appendChild(d); m.scrollTop = m.scrollHeight;
@@ -394,8 +376,8 @@
       if (f) f.innerHTML = '<p style="color:#2d6a4f;font-size:0.85rem;">✅ Draft opened — send it and we\'ll respond.</p>';
     }
 
-    function sendMessage() {
-      const inp = document.getElementById('chat-input');
+    function sendMsg() {
+      const inp = document.getElementById('bot-input');
       const q = inp.value.trim();
       if (!q) return;
       addUser(q);
@@ -416,5 +398,12 @@
       }
     }
   </script>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Lowell Herb Company. All rights reserved.</p>
+      <p style="margin-top:0.5rem;">Red Hook, NY &middot; <a href="mailto:info@lowellherbco.com">info@lowellherbco.com</a></p>
+    </div>
+  </footer>
 </body>
 </html>
