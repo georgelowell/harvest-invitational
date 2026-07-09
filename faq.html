@@ -85,13 +85,13 @@
       <p class="faq-q">When and where is it?</p>
       <p class="faq-a">Sunday, October 26, 2026 at Red Hook Golf Club, 650 Route 199, Red Hook, NY 12571.</p>
       <p class="faq-q">Who can play?</p>
-      <p class="faq-a">Any two-person team made up of staff from a licensed New York State cannabis dispensary. Teams can enter via the Instagram lottery or be invited by sponsoring brands.</p>
+      <p class="faq-a">Any two-person team made up of staff from a licensed New York State cannabis dispensary. The event is open to all staff members of the cannabis community. A portion of teams are allocated to lottery entrants, a portion are allocated by sponsoring brands. We're also inviting select Hudson Valley growers to exhibit and showcase flower from this year's harvest.</p>
 
       <p class="section-label" style="margin-top:2rem;">Tickets &amp; Lottery</p>
       <p class="faq-q">How do I enter the lottery?</p>
-      <p class="faq-a">Follow @lowellherbco on Instagram and look for the lottery post. The entry form asks for your team name, player details, dispensary affiliation, and a credit card to hold your spot. You are only charged if your team is selected.</p>
+      <p class="faq-a">Follow @lowellherbco on Instagram and look for the lottery post. The entry form asks for your team name, player details, dispensary affiliation, and a credit card to hold your spot. You are only charged if your team is selected. <strong>Deadline: August 15.</strong></p>
       <p class="faq-q">When is the lottery draw?</p>
-      <p class="faq-a">Thursday, July 30, 2026. Winners will be notified via Instagram DM and email.</p>
+      <p class="faq-a">The registration deadline is Saturday, August 15, 2026. Winners will be announced the following week via Instagram DM and email.</p>
       <p class="faq-q">How much does it cost if my team is selected?</p>
       <p class="faq-a">$50 per two-person team. Entry fees go entirely to cash prizes and the Last Prisoner Project donation.</p>
       <p class="faq-q">Can I bring spectators?</p>
@@ -120,6 +120,12 @@
       <p class="faq-a">100% of net proceeds from team entry fees go to the Last Prisoner Project, a national 501(c)(3) nonprofit freeing people still incarcerated for cannabis offenses. Lowell Herb Company underwrites the event's operating costs.</p>
       <p class="faq-q">How can I learn more about Last Prisoner Project?</p>
       <p class="faq-a"><a href="sponsors/last-prisoner-project.html">Visit our LPP partner page →</a> or go to lastprisonerproject.org.</p>
+
+      <p class="section-label" style="margin-top:2rem;">Exhibitors &amp; Growers</p>
+      <p class="faq-q">Can I exhibit my grow at the event?</p>
+      <p class="faq-a">We're inviting a select group of Hudson Valley cannabis growers to exhibit at the Harvest Classic Cup. Showcase flower from this year's harvest to an audience of dispensary staff, brand partners, and industry insiders. If you're interested in exhibiting, email <a href="mailto:george@lowellherbco.com"><strong>george@lowellherbco.com</strong></a>.</p>
+      <p class="faq-q">What do exhibitors get?</p>
+      <p class="faq-a">Exhibitors get a dedicated space near the tent area to display and discuss their flower, direct access to dispensary buyers and brand partners, and inclusion in event social media promotion.</p>
 
     </div>
   </section>
@@ -176,7 +182,7 @@
 
       // COST & TICKETS
       'cost': '$50 per two-person team. Spectator tickets: $100 each (lunch + full access, no golf). Entry fees go entirely to cash prizes and Last Prisoner Project donation.',
-      'lottery': 'Enter via Instagram (@lowellherbco). Register your two-person team with: team name, both players\' names & emails, dispensary/store affiliation, Instagram handle, and a credit/debit card to hold your spot. Draw is July 30. You are ONLY charged if selected ($50). Winners notified via Instagram DM and email.',
+      'lottery': 'Enter via Instagram (@lowellherbco). Register your two-person team by August 15 with: team name, both players\' names & emails, dispensary/store affiliation, Instagram handle, and a credit/debit card to hold your spot. Winners announced the following week. You are ONLY charged if selected ($50). Winners notified via Instagram DM and email.',
       'spectator': 'Yes — $100 spectator tickets. Includes full course access, lunch at The Grove, live music, open consumption areas, and the post-golf hang. Limited to 10 spots. Purchase via the same lottery/registration flow.',
       'free': 'Sponsor-invited teams are comped — no charge. Lottery winners pay $50.',
 
@@ -202,7 +208,7 @@
       'weed': 'Open consumption is allowed in designated areas. This is a cannabis industry event. Bring your own or purchase from on-site partners.',
 
       // AUDIENCE
-      'who': 'Open to any two-person team made up of staff from a licensed New York State cannabis dispensary. Also open to brand partners, industry guests, and sponsoring brands\' clients.',
+      'who': 'Open to all staff members of the cannabis community — dispensary employees, brand partners, industry guests, and sponsoring brands\' clients. A portion of teams are allocated to lottery entrants, a portion are allocated by sponsoring brands.',
       'eligibility': 'You must work at a licensed NY cannabis dispensary to enter the lottery. If invited by a sponsor brand, your sponsor handles eligibility.',
 
       // LOGISTICS
@@ -211,6 +217,9 @@
       'directions': 'From NYC: ~2 hours via Taconic State Parkway. From Albany: ~1 hour via I-87 S. From Hudson: 15 minutes via 9G S. Course address: 650 Route 199, Red Hook, NY 12571.',
       'weather': 'October 26 in the Hudson Valley: average high ~65°F, low ~45°F. Mild and perfect for golf. Misters available if warm, heaters if cool. Course has excellent drainage.',
       'capacity': '26 teams of 2 = 52 golfers max. Plus up to 10 spectator tickets. Total attendance capped at ~100-130 people for an intimate feel.',
+      'exhibit': 'Yes! We\'re inviting a select group of Hudson Valley cannabis growers to exhibit at the Harvest Classic Cup. Showcase flower from this year\'s harvest to dispensary staff, brand partners, and industry insiders. Email george@lowellherbco.com for details.',
+      'exhibitor': 'Exhibitors get a dedicated space near the tent area, direct access to dispensary buyers and brand partners, and inclusion in event social media promotion. Email george@lowellherbco.com.',
+      'grower': 'Hudson Valley growers are invited to exhibit at the event. Showcase this year\'s harvest flower. Contact george@lowellherbco.com.',
       'contact': 'Email info@lowellherbco.com.',
       'red hook': 'Red Hook Golf Club, est. 1931. Located centrally in the Hudson Valley, easy access from the entire Tri-State area and Capital Region.',
       'bennett': 'The Bennett Brothers — local musicians, about $800 for the event. They play smooth, funky live music during the lunch hour.',
@@ -283,6 +292,10 @@
 
         // Eligibility
         [/eligible|qualify|who can|can i|can we|dispensary|store|employee|work/, eventKB.who + ' ' + eventKB.eligibility],
+
+        // Exhibitor / grower
+        [/exhibit|showcase|vendor|booth|table|display/, eventKB.exhibit],
+        [/grower|grow|farm|cultivator|harvest/, eventKB.grower],
 
         // How to contact
         [/email|reach|call|phone|contact/, eventKB.contact],
