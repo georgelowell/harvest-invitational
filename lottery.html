@@ -8,6 +8,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .form-section { background:#fff; border-radius:16px; padding:2rem; border:1px solid #e8e8e8; margin-bottom:1.5rem; }
+    .form-section h3 { color:#1b4332; margin-bottom:1rem; padding-bottom:0.5rem; border-bottom:2px solid #d8f3dc; }
+    .form-row { margin-bottom:1.25rem; }
+    .form-row label { display:block; font-weight:600; font-size:0.9rem; margin-bottom:0.35rem; color:#333; }
+    .form-row input, .form-row select { width:100%; padding:0.65rem 0.85rem; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; font-family:'Inter',sans-serif; outline:none; transition:border-color 0.2s; box-sizing:border-box; }
+    .form-row input:focus, .form-row select:focus { border-color:#52b788; }
+    .form-row .hint { font-size:0.8rem; color:#888; margin-top:0.25rem; }
+    .player-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .full-width { grid-column:1/-1; }
+    @media (max-width:600px) { .player-grid { grid-template-columns:1fr; } }
+    .step-indicators { display:flex; gap:0.5rem; margin-bottom:2rem; justify-content:center; }
+    .step-dot { display:flex; align-items:center; gap:0.5rem; }
+    .step-dot .circle { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; }
+    .step-dot.active .circle { background:#2d6a4f; color:#fff; }
+    .step-dot.done .circle { background:#95d5b2; color:#1b4332; }
+    .step-dot.inactive .circle { background:#e8e8e8; color:#999; }
+    .step-dot .label { font-size:0.8rem; color:#666; }
+    .step-dot.active .label { color:#1b4332; font-weight:600; }
+    .step { display:none; }
+    .step.active { display:block; }
+    .btn-next { background:#2d6a4f; color:#fff; border:none; border-radius:8px; padding:0.75rem 2rem; font-weight:600; font-size:1rem; cursor:pointer; transition:background 0.2s; }
+    .btn-next:hover { background:#1b4332; }
+    .btn-prev { background:transparent; color:#555; border:1px solid #ddd; border-radius:8px; padding:0.75rem 1.5rem; font-weight:600; font-size:1rem; cursor:pointer; margin-right:0.75rem; }
+    .btn-prev:hover { background:#f5f5f5; }
+    .nav-btns { display:flex; justify-content:space-between; margin-top:1.5rem; }
+    .nav-btns div { display:flex; }
+    .success-msg { text-align:center; padding:2rem; }
+    .success-msg .check { font-size:3rem; margin-bottom:1rem; }
+    .consent-row { display:flex; align-items:flex-start; gap:0.5rem; margin:1rem 0; }
+    .consent-row input { width:auto !important; margin-top:0.2rem; }
+  </style>
 </head>
 <body>
   <header>
@@ -27,52 +59,207 @@
   <section class="hero" style="padding:3rem 0 2.5rem;">
     <div class="container">
       <h1 style="font-size:2.25rem;font-family:'El Hydrant',serif;">Enter the Lottery</h1>
-      <p class="subtitle">Secure your spot at the Harvest Classic Cup</p>
+      <p class="subtitle">Register your two-person team for the Harvest Classic Cup</p>
     </div>
   </section>
 
   <section>
-    <div class="container">
-      <div class="grid-2">
+    <div class="container" style="max-width:750px;">
+
+      <div class="grid-2" style="margin-bottom:2rem;">
         <div>
           <p class="section-label">How It Works</p>
-          <h2>Lottery Entry</h2>
-          <p>The event is open to any two-person team made up of staff from any licensed cannabis dispensary in New York State. Teams can enter via our Instagram lottery or be invited directly by one of our sponsoring brands.</p>
-          <ul style="line-height:2.2; margin:1.5rem 0;">
-            <li><strong>Entry is free</strong> — register your two-person team on Instagram</li>
+          <ul style="line-height:2.2; padding-left:1.2rem;">
+            <li><strong>Entry is free</strong> — register below</li>
             <li><strong>Deadline:</strong> Saturday, August 15, 2026</li>
-            <li><strong>Lottery draw:</strong> Winners announced the following week</li>
-            <li><strong>Winners get the right</strong> to purchase a team spot for <strong>$50</strong></li>
-            <li><strong>You must provide payment info</strong> at registration. Only charged if selected.</li>
-            <li><strong>26 teams</strong> total — a portion from the lottery, a portion allocated by sponsoring brands</li>
+            <li><strong>Draw:</strong> Winners announced the following week</li>
+            <li><strong>If selected:</strong> Pay $50 to lock your team spot</li>
+            <li><strong>26 teams</strong> total — lottery + sponsor allocations</li>
           </ul>
-          <p style="color:#555;">Entry fees go entirely to cash prizes for winning teams and the Last Prisoner Project charity donation.</p>
         </div>
         <div>
-          <p class="section-label">Registration</p>
-          <h2>Enter on Instagram</h2>
-          <p style="margin-bottom:1.5rem;">Follow <strong>@lowellherbco</strong> on Instagram and look for our lottery post. Click the link in bio to register your two-person team.</p>
-          <div style="background:#f0fdf4; border-radius:12px; padding:1.5rem; border:1px solid #d8f3dc;">
-            <p style="font-weight:600; margin-bottom:0.5rem;">🎟️ Lottery Entry Form</p>
-            <p>You'll need to provide:</p>
-            <ul style="line-height:2;">
-              <li>Team name</li>
-              <li>Both players' names &amp; email addresses</li>
-              <li>Dispensary/store affiliation</li>
-              <li>Instagram handle</li>
-              <li>Credit/debit card to hold your spot (only charged if selected)</li>
-            </ul>
-          </div>
+          <p class="section-label">What You Need</p>
+          <ul style="line-height:2.2; padding-left:1.2rem;">
+            <li>Team name</li>
+            <li>Both players' names, emails &amp; phones</li>
+            <li>Each player's role &amp; company</li>
+            <li>Payment info (only charged if selected)</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="alt">
-    <div class="container text-center">
-      <p class="section-label">Not sure if you want to play?</p>
-      <h2>Spectator Tickets Available</h2>
-      <p style="max-width:600px; margin:0 auto 1.5rem;">Non-golfers are welcome! $100 spectator tickets include full access to the course, lunch at The Grove, live music, and the post-golf hang. <a href="faq.html">See FAQ for details →</a></p>
+      <!-- STEP INDICATORS -->
+      <div class="step-indicators">
+        <div class="step-dot active" id="s1d"><div class="circle">1</div><span class="label">Team</span></div>
+        <div class="step-dot inactive" id="s2d"><div class="circle">2</div><span class="label">Player 1</span></div>
+        <div class="step-dot inactive" id="s3d"><div class="circle">3</div><span class="label">Player 2</span></div>
+        <div class="step-dot inactive" id="s4d"><div class="circle">4</div><span class="label">Payment</span></div>
+        <div class="step-dot inactive" id="s5d"><div class="circle">5</div><span class="label">Review</span></div>
+      </div>
+
+      <form id="lotteryForm" onsubmit="return false;">
+
+        <!-- STEP 1: Team Info -->
+        <div class="form-section step active" id="step1">
+          <h3>Team Information</h3>
+          <div class="form-row">
+            <label for="teamName">Team Name *</label>
+            <input type="text" id="teamName" placeholder="e.g. The Green Eagles" required>
+          </div>
+          <div class="form-row">
+            <label for="dispensary">Dispensary / Company Affiliation *</label>
+            <input type="text" id="dispensary" placeholder="e.g. The Dispensary NYC" required>
+          </div>
+          <div class="form-row">
+            <label for="instaHandle">Instagram Handle</label>
+            <input type="text" id="instaHandle" placeholder="@yourhandle">
+            <div class="hint">We'll DM winners here</div>
+          </div>
+          <div class="nav-btns"><div></div><button type="button" class="btn-next" onclick="nextStep(2)">Next: Player 1 →</button></div>
+        </div>
+
+        <!-- STEP 2: Player 1 -->
+        <div class="form-section step" id="step2">
+          <h3>Player 1</h3>
+          <div class="player-grid">
+            <div class="form-row full-width">
+              <label for="p1name">Full Name *</label>
+              <input type="text" id="p1name" placeholder="First & Last" required>
+            </div>
+            <div class="form-row">
+              <label for="p1email">Email Address *</label>
+              <input type="email" id="p1email" placeholder="you@email.com" required>
+            </div>
+            <div class="form-row">
+              <label for="p1phone">Phone Number *</label>
+              <input type="tel" id="p1phone" placeholder="(555) 123-4567" required>
+            </div>
+            <div class="form-row">
+              <label for="p1role">Role in the Cannabis Industry *</label>
+              <select id="p1role">
+                <option value="">Select...</option>
+                <option value="Budtender">Budtender</option>
+                <option value="Store Manager">Store Manager</option>
+                <option value="Buyer/Purchasing">Buyer / Purchasing</option>
+                <option value="Brand Representative">Brand Representative</option>
+                <option value="Grower/Cultivator">Grower / Cultivator</option>
+                <option value="Marketing">Marketing / Social Media</option>
+                <option value="Executive">Executive / Owner</option>
+                <option value="Compliance">Compliance / Legal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-row full-width">
+              <label for="p1company">Company / Brand Name *</label>
+              <input type="text" id="p1company" placeholder="Who do you work for?" required>
+            </div>
+          </div>
+          <div class="nav-btns">
+            <div><button type="button" class="btn-prev" onclick="prevStep(1)">← Back</button></div>
+            <button type="button" class="btn-next" onclick="nextStep(3)">Next: Player 2 →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Player 2 -->
+        <div class="form-section step" id="step3">
+          <h3>Player 2 — Your Teammate</h3>
+          <div class="player-grid">
+            <div class="form-row full-width">
+              <label for="p2name">Full Name *</label>
+              <input type="text" id="p2name" placeholder="First & Last" required>
+            </div>
+            <div class="form-row">
+              <label for="p2email">Email Address *</label>
+              <input type="email" id="p2email" placeholder="teammate@email.com" required>
+            </div>
+            <div class="form-row">
+              <label for="p2phone">Phone Number *</label>
+              <input type="tel" id="p2phone" placeholder="(555) 123-4567" required>
+            </div>
+            <div class="form-row">
+              <label for="p2role">Role in the Cannabis Industry *</label>
+              <select id="p2role">
+                <option value="">Select...</option>
+                <option value="Budtender">Budtender</option>
+                <option value="Store Manager">Store Manager</option>
+                <option value="Buyer/Purchasing">Buyer / Purchasing</option>
+                <option value="Brand Representative">Brand Representative</option>
+                <option value="Grower/Cultivator">Grower / Cultivator</option>
+                <option value="Marketing">Marketing / Social Media</option>
+                <option value="Executive">Executive / Owner</option>
+                <option value="Compliance">Compliance / Legal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-row full-width">
+              <label for="p2company">Company / Brand Name *</label>
+              <input type="text" id="p2company" placeholder="Who do they work for?" required>
+            </div>
+          </div>
+          <div class="nav-btns">
+            <div><button type="button" class="btn-prev" onclick="prevStep(2)">← Back</button></div>
+            <button type="button" class="btn-next" onclick="nextStep(4)">Next: Payment →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Payment Info -->
+        <div class="form-section step" id="step4">
+          <h3>Payment Info (Hold Only)</h3>
+          <p style="margin-bottom:1rem;">We need a card on file to hold your spot. <strong>You will only be charged $50 if your team is selected</strong> in the lottery draw.</p>
+          <div class="form-row">
+            <label for="cardName">Name on Card *</label>
+            <input type="text" id="cardName" placeholder="As it appears on the card" required>
+          </div>
+          <div class="form-row">
+            <label for="cardNumber">Card Number *</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric" required>
+          </div>
+          <div class="player-grid">
+            <div class="form-row">
+              <label for="cardExp">Expiration *</label>
+              <input type="text" id="cardExp" placeholder="MM/YY" required>
+            </div>
+            <div class="form-row">
+              <label for="cardCvc">CVC *</label>
+              <input type="text" id="cardCvc" placeholder="123" inputmode="numeric" required>
+            </div>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consentCard">
+            <label for="consentCard" style="font-size:0.85rem; color:#555;">I authorize a temporary hold. My card will only be charged $50 if my team is selected in the lottery draw. If not selected, no charge will occur. *</label>
+          </div>
+          <div class="consent-row">
+            <input type="checkbox" id="consentTerms">
+            <label for="consentTerms" style="font-size:0.85rem; color:#555;">I confirm both players are staff of a licensed NY cannabis dispensary and agree to the event terms. *</label>
+          </div>
+          <div class="nav-btns">
+            <div><button type="button" class="btn-prev" onclick="prevStep(3)">← Back</button></div>
+            <button type="button" class="btn-next" onclick="nextStep(5)">Review Entry →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Review & Submit -->
+        <div class="form-section step" id="step5">
+          <h3>Review Your Entry</h3>
+          <div id="reviewContent" style="background:#f9fafb; border-radius:8px; padding:1.25rem; line-height:1.8; font-size:0.9rem;"></div>
+          <div class="nav-btns">
+            <div><button type="button" class="btn-prev" onclick="prevStep(4)">← Edit</button></div>
+            <button type="button" class="btn-next" onclick="submitEntry()">Submit Entry →</button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- SUCCESS (hidden by default) -->
+      <div id="successScreen" style="display:none;">
+        <div class="form-section success-msg">
+          <div class="check">✅</div>
+          <h2>You're Entered!</h2>
+          <p style="max-width:500px; margin:1rem auto;">Your team <strong id="confirmTeam"></strong> has been registered for the Harvest Classic Cup lottery. We'll notify winners the week of August 15.</p>
+          <p style="color:#666;">A confirmation will be sent to your email and phone.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -82,5 +269,126 @@
       <p style="margin-top:0.5rem;">Red Hook, NY &middot; <a href="mailto:info@lowellherbco.com">info@lowellherbco.com</a></p>
     </div>
   </footer>
+
+  <script>
+    let currentStep = 1;
+
+    function updateSteps() {
+      for (let i = 1; i <= 5; i++) {
+        const dot = document.getElementById('s' + i + 'd');
+        const step = document.getElementById('step' + i);
+        dot.classList.remove('active', 'done', 'inactive');
+        step.classList.remove('active');
+        if (i === currentStep) { dot.classList.add('active'); step.classList.add('active'); }
+        else if (i < currentStep) dot.classList.add('done');
+        else dot.classList.add('inactive');
+      }
+      window.scrollTo({ top: 200, behavior: 'smooth' });
+    }
+
+    function nextStep(n) {
+      // Validate current step before moving forward
+      if (currentStep === 1) {
+        if (!document.getElementById('teamName').value.trim() || !document.getElementById('dispensary').value.trim()) {
+          alert('Please fill in Team Name and Dispensary/Company.');
+          return;
+        }
+      }
+      if (currentStep === 2) {
+        if (!document.getElementById('p1name').value.trim() || !document.getElementById('p1email').value.trim() || !document.getElementById('p1phone').value.trim() || !document.getElementById('p1company').value.trim()) {
+          alert('Please fill in all Player 1 fields.');
+          return;
+        }
+      }
+      if (currentStep === 3) {
+        if (!document.getElementById('p2name').value.trim() || !document.getElementById('p2email').value.trim() || !document.getElementById('p2phone').value.trim() || !document.getElementById('p2company').value.trim()) {
+          alert('Please fill in all Player 2 fields.');
+          return;
+        }
+      }
+      if (currentStep === 4) {
+        if (!document.getElementById('cardName').value.trim() || !document.getElementById('cardNumber').value.trim() || !document.getElementById('cardExp').value.trim() || !document.getElementById('cardCvc').value.trim()) {
+          alert('Please fill in all payment fields.');
+          return;
+        }
+        if (!document.getElementById('consentCard').checked || !document.getElementById('consentTerms').checked) {
+          alert('Please check both consent boxes to proceed.');
+          return;
+        }
+      }
+      if (currentStep === 4 && n === 5) {
+        // Build review
+        const r = document.getElementById('reviewContent');
+        r.innerHTML = `
+          <p><strong>Team:</strong> ${document.getElementById('teamName').value}</p>
+          <p><strong>Company:</strong> ${document.getElementById('dispensary').value}</p>
+          <p><strong>Instagram:</strong> ${document.getElementById('instaHandle').value || '—'}</p>
+          <hr style="border:none;border-top:1px solid #e0e0e0;margin:0.75rem 0;">
+          <p><strong>Player 1:</strong> ${document.getElementById('p1name').value}</p>
+          <p style="padding-left:1rem;color:#555;">${document.getElementById('p1email').value} · ${document.getElementById('p1phone').value} · ${document.getElementById('p1role').value} at ${document.getElementById('p1company').value}</p>
+          <p><strong>Player 2:</strong> ${document.getElementById('p2name').value}</p>
+          <p style="padding-left:1rem;color:#555;">${document.getElementById('p2email').value} · ${document.getElementById('p2phone').value} · ${document.getElementById('p2role').value} at ${document.getElementById('p2company').value}</p>
+          <hr style="border:none;border-top:1px solid #e0e0e0;margin:0.75rem 0;">
+          <p><strong>Payment:</strong> Card ending in ${document.getElementById('cardNumber').value.slice(-4)}. Only charged if selected.</p>
+        `;
+      }
+      currentStep = n;
+      updateSteps();
+    }
+
+    function prevStep(n) {
+      currentStep = n;
+      updateSteps();
+    }
+
+    function submitEntry() {
+      const team = document.getElementById('teamName').value.trim();
+      const p1 = document.getElementById('p1name').value.trim();
+      const p1e = document.getElementById('p1email').value.trim();
+      const p1p = document.getElementById('p1phone').value.trim();
+      const p1r = document.getElementById('p1role').value;
+      const p1c = document.getElementById('p1company').value.trim();
+      const p2 = document.getElementById('p2name').value.trim();
+      const p2e = document.getElementById('p2email').value.trim();
+      const p2p = document.getElementById('p2phone').value.trim();
+      const p2r = document.getElementById('p2role').value;
+      const p2c = document.getElementById('p2company').value.trim();
+      const disp = document.getElementById('dispensary').value.trim();
+      const insta = document.getElementById('instaHandle').value.trim();
+      const cn = document.getElementById('cardNumber').value.trim().slice(-4);
+
+      const subject = encodeURIComponent('[Harvest Classic Cup] Lottery Entry: ' + team);
+      const body = encodeURIComponent(
+        '=== NEW LOTTERY ENTRY ===\n\n' +
+        'Team Name: ' + team + '\n' +
+        'Company: ' + disp + '\n' +
+        'Instagram: ' + (insta || '—') + '\n\n' +
+        '--- PLAYER 1 ---\n' +
+        'Name: ' + p1 + '\n' +
+        'Email: ' + p1e + '\n' +
+        'Phone: ' + p1p + '\n' +
+        'Role: ' + p1r + '\n' +
+        'Company: ' + p1c + '\n\n' +
+        '--- PLAYER 2 ---\n' +
+        'Name: ' + p2 + '\n' +
+        'Email: ' + p2e + '\n' +
+        'Phone: ' + p2p + '\n' +
+        'Role: ' + p2r + '\n' +
+        'Company: ' + p2c + '\n\n' +
+        '--- PAYMENT ---\n' +
+        'Card ending in: ' + cn + ' (hold only - charge if selected)\n\n' +
+        '---\n' +
+        'Submitted via harvestclassiccup.com lottery form.'
+      );
+
+      // Show success
+      document.getElementById('confirmTeam').textContent = team;
+      document.getElementById('lotteryForm').style.display = 'none';
+      document.getElementById('successScreen').style.display = 'block';
+
+      // Open email draft to George
+      window.open('mailto:george@lowellherbco.com?subject=' + subject + '&cc=info@lowellherbco.com&body=' + body);
+    }
+  </script>
 </body>
 </html>
