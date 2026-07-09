@@ -48,6 +48,7 @@
       <nav>
         <a href="about.html">About</a>
         <a href="event.html">Event</a>
+        <a href="cornhole.html">Cornhole</a>
         <a href="venue.html">Venue</a>
         <a href="sponsors.html">Sponsors</a>
         <a href="lottery.html">Enter</a>
@@ -83,6 +84,7 @@
             <li>Team name</li>
             <li>Both players' names, emails &amp; phones</li>
             <li>Each player's role &amp; company</li>
+            <li>Afternoon activity choice: Golf (second 9) or Cornhole tournament</li>
             <li>Payment info (only charged if selected)</li>
           </ul>
         </div>
@@ -114,6 +116,20 @@
             <label for="instaHandle">Instagram Handle</label>
             <input type="text" id="instaHandle" placeholder="@yourhandle">
             <div class="hint">We'll DM winners here</div>
+          </div>
+          <div class="form-row">
+            <label>Afternoon Activity *</label>
+            <div style="display:flex; gap:1rem; margin-top:0.35rem;">
+              <label style="display:flex; align-items:center; gap:0.5rem; background:#f0fdf4; border:2px solid #d8f3dc; border-radius:8px; padding:0.65rem 1rem; cursor:pointer; flex:1;">
+                <input type="radio" name="activity" value="golf" checked>
+                <span><strong>⛳ Golf</strong><br><span style="font-size:0.8rem; color:#555;">Play the afternoon 9 holes</span></span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.5rem; background:#f0fdf4; border:2px solid #d8f3dc; border-radius:8px; padding:0.65rem 1rem; cursor:pointer; flex:1;">
+                <input type="radio" name="activity" value="cornhole">
+                <span><strong>🎯 Cornhole</strong><br><span style="font-size:0.8rem; color:#555;">World Cup tournament ($25/player)</span></span>
+              </label>
+            </div>
+            <div class="hint">Choose one. Cornhole runs from 12:30 PM. Golf continues with the afternoon nine.</div>
           </div>
           <div class="nav-btns"><div></div><button type="button" class="btn-next" onclick="nextStep(2)">Next: Player 1 →</button></div>
         </div>
@@ -323,6 +339,7 @@
           <p><strong>Team:</strong> ${document.getElementById('teamName').value}</p>
           <p><strong>Company:</strong> ${document.getElementById('dispensary').value}</p>
           <p><strong>Instagram:</strong> ${document.getElementById('instaHandle').value || '—'}</p>
+          <p><strong>Afternoon:</strong> ${document.querySelector('input[name="activity"]:checked').value === 'golf' ? '⛳ Golf (second 9)' : '🎯 Cornhole Tournament ($25/player)'}</p>
           <hr style="border:none;border-top:1px solid #e0e0e0;margin:0.75rem 0;">
           <p><strong>Player 1:</strong> ${document.getElementById('p1name').value}</p>
           <p style="padding-left:1rem;color:#555;">${document.getElementById('p1email').value} · ${document.getElementById('p1phone').value} · ${document.getElementById('p1role').value} at ${document.getElementById('p1company').value}</p>
@@ -357,12 +374,16 @@
       const insta = document.getElementById('instaHandle').value.trim();
       const cn = document.getElementById('cardNumber').value.trim().slice(-4);
 
+      const activity = document.querySelector('input[name="activity"]:checked').value;
+      const activityLabel = activity === 'golf' ? 'Golf (afternoon 9 holes)' : 'Cornhole Tournament ($25/player)';
+
       const subject = encodeURIComponent('[Harvest Classic Cup] Lottery Entry: ' + team);
       const body = encodeURIComponent(
         '=== NEW LOTTERY ENTRY ===\n\n' +
         'Team Name: ' + team + '\n' +
         'Company: ' + disp + '\n' +
-        'Instagram: ' + (insta || '—') + '\n\n' +
+        'Instagram: ' + (insta || '—') + '\n' +
+        'Afternoon Activity: ' + activityLabel + '\n\n' +
         '--- PLAYER 1 ---\n' +
         'Name: ' + p1 + '\n' +
         'Email: ' + p1e + '\n' +
