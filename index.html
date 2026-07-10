@@ -399,27 +399,27 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <span class="bname">The Harvest Cup</span>
     </a>
     <nav class="navlinks" aria-label="Main">
-      <a href="#about" data-nav="">About</a>
+      <a href="#overview" data-nav="">About</a>
       <a href="#event" data-nav="">Event</a>
       <a href="#music" data-nav="">Music</a>
       <a href="#cornhole" data-nav="">Cornhole</a>
       <a href="#venue" data-nav="">Venue</a>
       <a href="#sponsors" data-nav="">Sponsors</a>
       <a href="#faq" data-nav="">FAQ</a>
-      <a href="#enter" class="nav-cta" data-nav="">Enter the Lottery</a>
+      <a href="#enter" class="nav-cta" data-nav="">Get In</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="mnav" id="mnav">
   <nav aria-label="Mobile">
-    <a href="#about" data-nav="">About</a>
+    <a href="#overview" data-nav="">About</a>
     <a href="#event" data-nav="">Event</a>
     <a href="#music" data-nav="">Music</a>
     <a href="#cornhole" data-nav="">Cornhole</a>
     <a href="#venue" data-nav="">Venue</a>
     <a href="#sponsors" data-nav="">Sponsors</a>
-    <a href="#enter" data-nav="">Enter</a>
+    <a href="#enter" data-nav="">Get In</a>
     <a href="#faq" data-nav="">FAQ</a>
   </nav>
 </div>
@@ -468,7 +468,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
 </section>
 
 <!-- ================= HOW IT WORKS ================= -->
-<section class="tight" style="padding-top:0">
+<section class="tight" id="how-it-works" style="padding-top:0">
   <div class="wrap">
     <div class="rv">
       <p class="eyebrow">How It Works</p>
@@ -1004,7 +1004,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <div><b>The Harvest Cup</b><span>Monday, October 26, 2026 · Red Hook, NY</span></div>
       </div>
       <nav class="foot-nav" aria-label="Footer">
-        <a href="#about" data-nav="">About</a><a href="#event" data-nav="">Event</a><a href="#music" data-nav="">Music</a><a href="#cornhole" data-nav="">Cornhole</a><a href="#venue" data-nav="">Venue</a><a href="#sponsors" data-nav="">Sponsors</a><a href="#enter" data-nav="">Enter</a><a href="#faq" data-nav="">FAQ</a>
+        <a href="#overview" data-nav="">About</a><a href="#event" data-nav="">Event</a><a href="#music" data-nav="">Music</a><a href="#cornhole" data-nav="">Cornhole</a><a href="#venue" data-nav="">Venue</a><a href="#sponsors" data-nav="">Sponsors</a><a href="#enter" data-nav="">Enter</a><a href="#faq" data-nav="">FAQ</a>
       </nav>
     </div>
     <div class="foot-legal">
@@ -1041,7 +1041,7 @@ document.querySelectorAll('[data-nav]').forEach(function(a){
 });
 
 /* scrollspy */
-var spyMap={overview:'#about',how:'#about',about:'#about',event:'#event',prizes:'#event',music:'#music',cornhole:'#cornhole',venue:'#venue',sponsors:'#sponsors',lpp:'#sponsors',exhibitors:'#sponsors',enter:'#enter',faq:'#faq'};
+var spyMap={overview:'#overview',how:'#overview',about:'#about',event:'#event',prizes:'#event',music:'#music',cornhole:'#cornhole',venue:'#venue',sponsors:'#sponsors',lpp:'#sponsors',exhibitors:'#sponsors',enter:'#enter',faq:'#faq'};
 var spy=new IntersectionObserver(function(es){
   es.forEach(function(e){
     if(!e.isIntersecting)return;
