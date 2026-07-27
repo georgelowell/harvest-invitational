@@ -10,6 +10,8 @@
 <meta property="og:description" content="A Day of Golf and Cornhole with Industry Friends. Monday, October 26, 2026 — Red Hook Golf Club, NY. Benefiting the Last Prisoner Project.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://lowellharvestcup.com/images/harvest-cup-logo.png">
+<meta name="twitter:image" content="https://lowellharvestcup.com/images/harvest-cup-logo.png">
 </head>
 <body>
 <style>
@@ -395,7 +397,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
 <header class="topbar" id="topbar">
   <div class="topbar-in">
     <a class="brand" href="#home" data-nav="">
-      <svg class="roundel" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5" fill="none" stroke="#c2952f" stroke-width="1.4"/><circle cx="22" cy="22" r="17" fill="none" stroke="#c2952f" stroke-width=".6" opacity=".55"/><text x="22" y="27.5" text-anchor="middle" font-family="'Howards Nine',Georgia,serif" font-size="15" fill="#e0b654">HC</text></svg>
+      <img class="roundel" src="images/harvest-cup-logo-nav.png" alt="The Harvest Cup" style="width:auto;height:40px;flex:none">
       <span class="bname">The Harvest Cup</span>
     </a>
     <nav class="navlinks" aria-label="Main">
@@ -822,7 +824,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     <div class="rv" style="text-align:center">
       <p class="eyebrow" style="justify-content:center">Get In</p>
       <h2 class="sec">Enter the Lottery</h2>
-      <p class="lede" style="margin:0 auto">Register your two-person team for the Harvest Cup. Entry is free — deadline is <strong style="color:var(--ink-text)">Saturday, August 15, 2026</strong>.</p>
+      <p class="lede" style="margin:0 auto">Register your two-person team for the Harvest Cup. Entry is free — deadline is <strong style="color:var(--ink-text)">Saturday, August 15, 2026</strong>. Winners get a payment link within 24 hours of the draw.</p>
     </div>
     <div class="lot-intro">
       <div class="lot-box rv">
@@ -831,7 +833,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <li><strong>Entry is free</strong> — register below</li>
           <li><strong>Deadline:</strong> Saturday, August 15, 2026</li>
           <li><strong>Draw:</strong> Winners announced the following week</li>
-          <li><strong>If selected:</strong> Pay $50 to lock your team spot</li>
+          <li><strong>If selected:</strong> We send you a payment link — $50 locks your team spot</li>
           <li><strong>26 teams</strong> total — lottery + sponsor allocations</li>
         </ul>
       </div>
@@ -842,7 +844,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <li>Both players' names, emails &amp; phones</li>
           <li>Each player's role &amp; company</li>
           <li>Afternoon activity choice: Golf (second 9) or Cornhole</li>
-          <li>Payment info (only charged if selected)</li>
         </ul>
       </div>
     </div>
@@ -850,7 +851,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="sdot active" id="s1d"><span class="c">1</span><span class="l">Team</span></div>
       <div class="sdot" id="s2d"><span class="c">2</span><span class="l">Player 1</span></div>
       <div class="sdot" id="s3d"><span class="c">3</span><span class="l">Player 2</span></div>
-      <div class="sdot" id="s4d"><span class="c">4</span><span class="l">Payment</span></div>
+      <div class="sdot" id="s4d"><span class="c">4</span><span class="l">Confirm</span></div>
       <div class="sdot" id="s5d"><span class="c">5</span><span class="l">Review</span></div>
     </div>
 
@@ -904,15 +905,8 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
 
       <!-- STEP 4 -->
       <div class="fstep" id="step4">
-        <h3>Payment Info (Hold Only)</h3>
-        <p style="margin-bottom:20px;color:var(--muted);font-size:.95rem">Card on file to hold your spot. <strong style="color:var(--ink-text)">Only charged $50 if selected in the lottery draw.</strong></p>
-        <div class="frow"><label for="cardName">Name on Card *</label><input type="text" id="cardName" placeholder="As it appears on the card" required></div>
-        <div class="frow"><label for="cardNumber">Card Number *</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" inputmode="numeric" required></div>
-        <div class="fgrid">
-          <div class="frow"><label for="cardExp">Expiration *</label><input type="text" id="cardExp" placeholder="MM/YY" required></div>
-          <div class="frow"><label for="cardCvc">CVC *</label><input type="text" id="cardCvc" placeholder="123" inputmode="numeric" required></div>
-        </div>
-        <label class="consent"><input type="checkbox" id="consentCard"><span>I authorize a temporary hold. My card will only be charged $50 if selected. *</span></label>
+        <h3>Confirm Your Entry</h3>
+        <p style="margin-bottom:20px;color:var(--muted);font-size:.95rem">Entry is free. If selected, we'll send a payment link to lock your team spot.</p>
         <label class="consent"><input type="checkbox" id="consentTerms"><span>I confirm both players are staff of a licensed NY dispensary. *</span></label>
         <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(3)">← Back</button><button type="button" class="btn-step" onclick="nextStep(5)">Review Entry →</button></div>
       </div>
@@ -929,7 +923,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <svg class="tick" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="32" cy="32" r="29"/><path d="M20 33 l8.5 8.5 L45 24" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <p class="big">You're Entered!</p>
       <p>Your team <strong id="confirmTeam"></strong> has been registered for the Harvest Cup lottery. We'll notify winners the week of August 15.</p>
-      <p><strong>One more step:</strong> an email draft just opened — hit Send to complete your submission.</p>
+      <p><strong>One more step:</strong> an email draft just opened — hit Send to complete your submission. We collect names, emails, and phones so we can reach you if your team is selected.</p>
     </div>
   </div>
 </section>
@@ -949,7 +943,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     </div>
 
     <div class="faq-cat rv"><h3>Tickets &amp; Lottery</h3>
-      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Deadline: August 15. Winners announced the following week. $50 if selected.</p></div></div>
+      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Deadline: August 15. Winners announced the following week. If selected, we'll send a payment link — $50 locks your team spot.</p></div></div>
       <div class="qa"><button aria-expanded="false">Can I bring spectators?</button><div class="ans"><p>Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.</p></div></div>
       <div class="qa"><button aria-expanded="false">I was invited by a sponsor. How do I register?</button><div class="ans"><p>Your sponsor will provide a private registration link.</p></div></div>
     </div>
@@ -1000,7 +994,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
   <div class="wrap">
     <div class="foot">
       <div class="fbrand">
-        <svg class="roundel" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20.5" fill="none" stroke="#c2952f" stroke-width="1.4"/><circle cx="22" cy="22" r="17" fill="none" stroke="#c2952f" stroke-width=".6" opacity=".55"/><text x="22" y="27.5" text-anchor="middle" font-family="'Howards Nine',Georgia,serif" font-size="15" fill="#e0b654">HC</text></svg>
+        <img class="roundel" src="images/harvest-cup-logo-foot.png" alt="The Harvest Cup" style="width:auto;height:54px;flex:none">
         <div><b>The Harvest Cup</b><span>Monday, October 26, 2026 · Red Hook, NY</span></div>
       </div>
       <nav class="foot-nav" aria-label="Footer">
@@ -1120,11 +1114,10 @@ function nextStep(n){
   if(currentStep===1&&(!val('teamName')||!val('dispensary'))){alert('Please fill in Team Name and Company.');return}
   if(currentStep===2&&(!val('p1name')||!val('p1email')||!val('p1phone')||!val('p1company'))){alert('Please fill in all Player 1 fields.');return}
   if(currentStep===3&&(!val('p2name')||!val('p2email')||!val('p2phone')||!val('p2company'))){alert('Please fill in all Player 2 fields.');return}
-  if(currentStep===4&&(!val('cardName')||!val('cardNumber')||!val('cardExp')||!val('cardCvc'))){alert('Please fill in all payment fields.');return}
-  if(currentStep===4&&(!document.getElementById('consentCard').checked||!document.getElementById('consentTerms').checked)){alert('Please check both consent boxes.');return}
+  if(currentStep===4&&(!document.getElementById('consentTerms').checked)){alert('Please confirm both players are NY dispensary staff.');return}
   if(currentStep===4&&n===5){
     var act=document.querySelector('input[name="activity"]:checked').value;
-    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Company:</strong> '+esc(val('dispensary'))+'</p><p><strong>Instagram:</strong> '+esc(val('instaHandle')||'—')+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($25/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+' at '+esc(val('p1company'))+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+' at '+esc(val('p2company'))+'</p><hr><p><strong>Payment:</strong> Card ending in '+esc(val('cardNumber').slice(-4))+'. Only charged if selected.</p>';
+    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Company:</strong> '+esc(val('dispensary'))+'</p><p><strong>Instagram:</strong> '+esc(val('instaHandle')||'—')+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($25/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+' at '+esc(val('p1company'))+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+' at '+esc(val('p2company'))+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
   }
   currentStep=n;updateSteps();
 }
@@ -1135,7 +1128,7 @@ function submitEntry(){
   var act=document.querySelector('input[name="activity"]:checked').value;
   var activityLabel=act==='golf'?'Golf (afternoon 9 holes)':'Cornhole Tournament ($25/player)';
   var subject=encodeURIComponent('[The Harvest Cup] Lottery Entry: '+team);
-  var body=encodeURIComponent('=== NEW LOTTERY ENTRY ===\n\nTeam Name: '+team+'\nCompany: '+val('dispensary')+'\nInstagram: '+(val('instaHandle')||'—')+'\nAfternoon Activity: '+activityLabel+'\n\n--- PLAYER 1 ---\nName: '+val('p1name')+'\nEmail: '+val('p1email')+'\nPhone: '+val('p1phone')+'\nRole: '+document.getElementById('p1role').value+'\nCompany: '+val('p1company')+'\n\n--- PLAYER 2 ---\nName: '+val('p2name')+'\nEmail: '+val('p2email')+'\nPhone: '+val('p2phone')+'\nRole: '+document.getElementById('p2role').value+'\nCompany: '+val('p2company')+'\n\n--- PAYMENT ---\nCard ending in: '+val('cardNumber').slice(-4)+' (hold only)\n\n---\nSubmitted via harvestcup.com');
+  var body=encodeURIComponent('=== NEW LOTTERY ENTRY ===\n\nTeam Name: '+team+'\nCompany: '+val('dispensary')+'\nInstagram: '+(val('instaHandle')||'—')+'\nAfternoon Activity: '+activityLabel+'\n\n--- PLAYER 1 ---\nName: '+val('p1name')+'\nEmail: '+val('p1email')+'\nPhone: '+val('p1phone')+'\nRole: '+document.getElementById('p1role').value+'\nCompany: '+val('p1company')+'\n\n--- PLAYER 2 ---\nName: '+val('p2name')+'\nEmail: '+val('p2email')+'\nPhone: '+val('p2phone')+'\nRole: '+document.getElementById('p2role').value+'\nCompany: '+val('p2company')+'\n\n---\nSubmitted via harvestcup.com');
   document.getElementById('confirmTeam').textContent=team;
   document.getElementById('lotteryForm').style.display='none';
   document.getElementById('stepper').style.display='none';
@@ -1152,8 +1145,8 @@ var eventKB={
   'teams':'26 teams of 2 (52 players). Open to NY cannabis staff. Lottery ($50) or comped by sponsors.',
   'cornhole':'World Cup format — group stage round robin then single-elimination knockout. $25/player, unlimited. Starts 12:30pm.',
   'schedule':'9:30-10am Arrival. 10:30am Morning shotgun. 12:30pm Lunch + Cornhole starts. 2pm Afternoon golf. 4:20pm Awards. 5:30pm Wind-down.',
-  'cost':'$50 per two-person team. Spectator tickets: $100 each. Entry fees to prizes and LPP.',
-  'lottery':'Register by August 15. Winners announced the following week. Only charged $50 if selected.',
+  'cost':'$50 per two-person team, paid via link after lottery draw. Spectator tickets: $100 each. Entry fees to prizes and LPP.',
+  'lottery':'Register by August 15. Winners announced the following week. If selected, we send a payment link — $50 locks your team spot.',
   'spectator':'Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.',
   'prizes':'Golf: $500/$300/$200. Cornhole: $250/$150/$100.',
   'sponsor':'Sponsors get comped teams, logo placement, social amplification, on-site presence, retailer access, charity alignment, dedicated page.',
