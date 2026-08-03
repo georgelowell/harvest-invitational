@@ -1,6 +1,6 @@
-# The Harvest Cup
+# The Croptober Cup
 
-Website for the Lowell Herb Company's Harvest Cup — a cannabis industry golf and cornhole invitational at Red Hook Golf Club, October 26, 2026.
+Website for the Lowell Herb Company's Croptober Cup (formerly Harvest Cup) — a cannabis industry golf and cornhole invitational at Red Hook Golf Club, October 26, 2026.
 
 ## Site
 
