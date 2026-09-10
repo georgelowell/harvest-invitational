@@ -322,6 +322,8 @@ section{padding:96px 0}
 .review-box{background:#fff;border:1px solid var(--paper-line);border-radius:3px;padding:22px 24px;line-height:1.9;font-size:.92rem}
 .review-box hr{border:none;border-top:1px dashed var(--paper-line);margin:12px 0}
 .review-box .rv-sub{color:var(--muted);padding-left:14px}
+.fb-error{background:#fdf3f2;border:1px solid #d9534f;border-left-width:3px;border-radius:3px;padding:16px 18px;margin-top:18px;color:#8a2b28;font-size:.9rem;line-height:1.6}
+.btn-step[disabled]{opacity:.6;cursor:default}
 .success{display:none;text-align:center;background:var(--paper);border:1px solid var(--gold);border-radius:4px;padding:60px 40px}
 .success .big{font-family:var(--script);font-size:2.5rem;color:var(--ink);margin-bottom:14px}
 .success p{max-width:52ch;margin:0 auto 10px;color:var(--muted)}
@@ -899,7 +901,8 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="fstep" id="step5">
         <h3>Review Your Entry</h3>
         <div class="review-box" id="reviewContent"></div>
-        <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(4)">← Edit</button><button type="button" class="btn-step" onclick="submitEntry()">Submit Entry →</button></div>
+        <div class="fb-error" id="submitError" role="alert" style="display:none"></div>
+        <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(4)">← Edit</button><button type="button" class="btn-step" id="submitBtn" onclick="submitEntry()">Submit Entry →</button></div>
       </div>
     </form>
 
@@ -907,7 +910,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <svg class="tick" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="32" cy="32" r="29"/><path d="M20 33 l8.5 8.5 L45 24" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <p class="big">You're Entered!</p>
       <p>Your team <strong id="confirmTeam"></strong> has been registered for the Croptober Cup lottery. We'll notify winners the week of September 30.</p>
-      <p><strong>One more step:</strong> an email draft just opened — hit Send to complete your submission. We collect names, emails, and phones so we can reach you if your team is selected.</p>
+      <p>Keep an eye on your inbox — we'll reach out at the email and phone number you provided if your team is drawn.</p>
     </div>
   </div>
 </section>
@@ -1095,7 +1098,12 @@ function val(id){return document.getElementById(id).value.trim()}
 function nextStep(n){
   if(currentStep===1&&(!val('teamName')||!val('dispensary'))){alert('Please fill in Team Name and Company.');return}
   if(currentStep===2&&(!val('p1name')||!val('p1email')||!val('p1phone')||!val('p1company'))){alert('Please fill in all Player 1 fields.');return}
+  if(currentStep===2&&!document.getElementById('p1role').value){alert('Please select a role for Player 1.');return}
+  if(currentStep===2&&!isEmail(val('p1email'))){alert('Please enter a valid email for Player 1.');return}
   if(currentStep===3&&(!val('p2name')||!val('p2email')||!val('p2phone')||!val('p2company'))){alert('Please fill in all Player 2 fields.');return}
+  if(currentStep===3&&!document.getElementById('p2role').value){alert('Please select a role for Player 2.');return}
+  if(currentStep===3&&!isEmail(val('p2email'))){alert('Please enter a valid email for Player 2.');return}
+  if(currentStep===3&&val('p1email').toLowerCase()===val('p2email').toLowerCase()){alert('Each player needs a different email address.');return}
   if(currentStep===4&&(!document.getElementById('consentTerms').checked)){alert('Please confirm both players are NY dispensary staff.');return}
   if(currentStep===4&&n===5){
     var act=document.querySelector('input[name="activity"]:checked').value;
@@ -1105,17 +1113,76 @@ function nextStep(n){
 }
 function prevStep(n){currentStep=n;updateSteps()}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-function submitEntry(){
-  var team=val('teamName');
+function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)}
+
+var SUBMIT_ENDPOINT='https://croptober-collector-844482685472.us-central1.run.app/submit';
+
+function collectEntry(){
   var act=document.querySelector('input[name="activity"]:checked').value;
-  var activityLabel=act==='golf'?'Golf (afternoon 9 holes)':'Cornhole Tournament ($20/player)';
-  var subject=encodeURIComponent('[The Croptober Cup] Lottery Entry: '+team);
-  var body=encodeURIComponent('=== NEW LOTTERY ENTRY ===\n\nTeam Name: '+team+'\nCompany: '+val('dispensary')+'\nInstagram: '+(val('instaHandle')||'—')+'\nAfternoon Activity: '+activityLabel+'\n\n--- PLAYER 1 ---\nName: '+val('p1name')+'\nEmail: '+val('p1email')+'\nPhone: '+val('p1phone')+'\nRole: '+document.getElementById('p1role').value+'\nCompany: '+val('p1company')+'\n\n--- PLAYER 2 ---\nName: '+val('p2name')+'\nEmail: '+val('p2email')+'\nPhone: '+val('p2phone')+'\nRole: '+document.getElementById('p2role').value+'\nCompany: '+val('p2company')+'\n\n---\nSubmitted via croptobercup.com');
-  document.getElementById('confirmTeam').textContent=team;
-  document.getElementById('lotteryForm').style.display='none';
-  document.getElementById('stepper').style.display='none';
-  document.getElementById('successScreen').style.display='block';
-  window.location.href='mailto:george@lowellherbco.com?subject='+subject+'&cc=info@lowellherbco.com&body='+body;
+  return {
+    team_name:val('teamName'),
+    company:val('dispensary'),
+    instagram:val('instaHandle'),
+    afternoon_activity:act,
+    p1_name:val('p1name'),
+    p1_email:val('p1email'),
+    p1_phone:val('p1phone'),
+    p1_role:document.getElementById('p1role').value,
+    p1_company:val('p1company'),
+    p2_name:val('p2name'),
+    p2_email:val('p2email'),
+    p2_phone:val('p2phone'),
+    p2_role:document.getElementById('p2role').value,
+    p2_company:val('p2company'),
+    consent_staff:!!document.getElementById('consentTerms').checked
+  };
+}
+
+var submitting=false;
+function submitEntry(){
+  if(submitting)return;
+  var payload=collectEntry();
+  var err=document.getElementById('submitError');
+  var btn=document.getElementById('submitBtn');
+  submitting=true;
+  if(err){err.style.display='none';err.textContent=''}
+  if(btn){btn.disabled=true;btn.textContent='Submitting…'}
+
+  // Timeout so a hung network can't leave the user stranded on "Submitting…".
+  var ctrl=(typeof AbortController!=='undefined')?new AbortController():null;
+  var timer=ctrl?setTimeout(function(){ctrl.abort()},20000):null;
+
+  fetch(SUBMIT_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload),
+    signal:ctrl?ctrl.signal:undefined
+  })
+  .then(function(r){return r.json().then(function(j){return {ok:r.ok,body:j}})})
+  .then(function(res){
+    if(timer)clearTimeout(timer);
+    if(!res.ok||!res.body.success){
+      var msg=(res.body&&res.body.errors)?res.body.errors.join(' '):'Something went wrong. Please try again.';
+      throw new Error(msg);
+    }
+    // Only NOW do we claim success — after the server confirmed storage.
+    document.getElementById('confirmTeam').textContent=payload.team_name;
+    document.getElementById('lotteryForm').style.display='none';
+    document.getElementById('stepper').style.display='none';
+    document.getElementById('successScreen').style.display='block';
+    document.getElementById('successScreen').scrollIntoView({behavior:'smooth',block:'center'});
+  })
+  .catch(function(e){
+    if(timer)clearTimeout(timer);
+    submitting=false;
+    if(btn){btn.disabled=false;btn.textContent='Submit Entry →'}
+    var box=document.getElementById('submitError');
+    if(box){
+      box.textContent='We couldn\'t submit your entry: '+(e&&e.name==='AbortError'?'the request timed out.':e.message)+' Please check your connection and try again, or email george@lowellherbco.com.';
+      box.style.display='block';
+      box.scrollIntoView({behavior:'smooth',block:'center'});
+    } else { alert('Submission failed. Please try again.'); }
+  });
 }
 
 /* ============ EVENT BOT ============ */
