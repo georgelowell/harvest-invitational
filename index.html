@@ -37,7 +37,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{font-family:var(--sans);font-weight:400;color:var(--ink-text);background:var(--ivory);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,h4{text-wrap:balance;font-family:var(--head);letter-spacing:.02em;font-weight:normal!important}
 .wrap{max-width:var(--w);margin:0 auto;padding:0 24px}
@@ -466,7 +466,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="stat"><b>100%</b><span>of Tickets to LPP</span></div>
     </div>
     <figure class="photo-frame rv">
-      <img src="images/golf-golden-hour.jpg" alt="Golf course at golden hour" loading="lazy">
+      <img src="images/golf-golden-hour.jpg" alt="Golf course at golden hour" width="1596" height="1195" loading="lazy" decoding="async">
       <figcaption class="photo-cap"><span>Red Hook Golf Club at golden hour</span><span>Hudson Valley, New York</span></figcaption>
     </figure>
   </div>
@@ -511,7 +511,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <p>The Croptober Cup is a gathering for the people who make New York's cannabis industry run — the budtenders, buyers, growers, and brand teams who work the counters, stock the shelves, and cultivate the product day in and day out.</p>
         <p>This is a day to set down the work and enjoy a round of golf, a game of cornhole, a meal from The Grove, and a chance to meet some of our favorite growers from around the Hudson Valley. We're inviting select growers to exhibit and showcase flower from this year's harvest.</p>
       </div>
-      <div class="img-card rv"><img src="images/golf-course-stock.jpg" alt="Lush green golf course landscape" loading="lazy"></div>
+      <div class="img-card rv"><img src="images/golf-course-stock.jpg" alt="Lush green golf course landscape" width="1400" height="788" loading="lazy" decoding="async"></div>
     </div>
     <div class="cols" style="margin-top:84px">
       <div class="rv badge-wrap">
@@ -567,7 +567,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <h2 class="sec">What to Expect</h2>
     </div>
     <figure class="photo-frame rv" style="margin-top:40px">
-      <img src="images/golf-course-stock.jpg" alt="Golf course fairway" loading="lazy">
+      <img src="images/golf-course-stock.jpg" alt="Golf course fairway" width="1400" height="788" loading="lazy" decoding="async">
       <figcaption class="photo-cap"><span>The fairways at Red Hook</span><span>Par 72 · 6,564 yards</span></figcaption>
     </figure>
     <div class="xgrid">
@@ -610,7 +610,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <p class="lede">Live music all day at the Croptober Cup.</p>
     </div>
     <div class="band">
-      <div class="img-card light rv"><img src="images/bennett-brothers.jpg" alt="The Bennett Brothers" loading="lazy"></div>
+      <div class="img-card light rv"><img src="images/bennett-brothers.jpg" alt="The Bennett Brothers" width="1000" height="750" loading="lazy" decoding="async"></div>
       <div class="prose rv">
         <p>The Bennett Brothers are an acoustic duo from Upstate New York — brothers <strong>Owen</strong> and <strong>Liam Bennett</strong> — bringing feel-good classic rock, country, and blues to the Croptober Cup lunch hour.</p>
         <p>Their laid-back acoustic sound pairs perfectly with a sunny afternoon on the course, delivering soulful harmonies and crowd-pleasing favorites in an easygoing, conversation-friendly setting under the shaded tent.</p>
@@ -1022,6 +1022,52 @@ document.querySelectorAll('[data-nav]').forEach(function(a){
     mnav.classList.remove('open');document.body.classList.remove('menu-open');burger.setAttribute('aria-expanded','false');
   });
 });
+
+/* ============ ANCHOR SCROLL CORRECTION ============
+   Deep links (QR code -> #enter) can land short because lazy-loaded images
+   below the fold have not been laid out yet when the browser computes the
+   scroll position; once they load, the page grows and the target drifts down
+   (users landed on "Showcase Your Harvest" instead of the lottery form).
+   Intrinsic width/height on every image reserves the space up front; this
+   correction re-anchors afterwards as a belt-and-braces guard for slow
+   connections and any future image that lacks dimensions. */
+function anchorCorrection(){
+  var id=location.hash.slice(1);
+  if(!id)return;
+  var target=document.getElementById(id);
+  if(!target)return;
+  var offset=(parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop)||0);
+  var delta=target.getBoundingClientRect().top-offset;
+  // Only correct meaningful drift; ignore sub-pixel and in-flight smoothing.
+  if(Math.abs(delta)>8){
+    var prev=document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior='auto';
+    window.scrollBy(0,delta);
+    document.documentElement.style.scrollBehavior=prev||'';
+  }
+}
+function scheduleAnchorCorrection(){
+  if(!location.hash)return;
+  // Re-anchor at increasing intervals to catch late-loading images.
+  // Preserve the user's own scrolling: bail if they move the page manually.
+  var manual=false;
+  var onWheel=function(){manual=true};
+  ['wheel','touchstart','keydown'].forEach(function(ev){
+    window.addEventListener(ev,onWheel,{once:true,passive:true});
+  });
+  [120,350,700,1200,2000].forEach(function(ms){
+    setTimeout(function(){
+      if(manual)return;
+      anchorCorrection();
+    },ms);
+  });
+}
+if(location.hash){
+  // Run once the initial layout exists, then keep correcting until images settle.
+  if(document.readyState==='complete'){setTimeout(scheduleAnchorCorrection,0);}
+  else{window.addEventListener('load',scheduleAnchorCorrection);}
+}
+window.addEventListener('hashchange',function(){setTimeout(scheduleAnchorCorrection,0)});
 
 /* scrollspy */
 var spyMap={overview:'#overview',how:'#overview',about:'#about',event:'#event',prizes:'#event',music:'#music',cornhole:'#cornhole',venue:'#venue',sponsors:'#sponsors',lpp:'#sponsors',exhibitors:'#sponsors',enter:'#enter',faq:'#faq'};
