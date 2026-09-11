@@ -324,6 +324,11 @@ section{padding:96px 0}
 .review-box .rv-sub{color:var(--muted);padding-left:14px}
 .fb-error{background:#fdf3f2;border:1px solid #d9534f;border-left-width:3px;border-radius:3px;padding:16px 18px;margin-top:18px;color:#8a2b28;font-size:.9rem;line-height:1.6}
 .btn-step[disabled]{opacity:.6;cursor:default}
+.price-strike{text-decoration:line-through;text-decoration-thickness:2px;opacity:.55;font-weight:600}
+.price-now{color:var(--gold);font-weight:700}
+.price-note{display:block;font-size:.78rem;letter-spacing:.02em;opacity:.8;margin-top:4px;text-transform:none}
+.stat .price-strike{font-size:.9rem;margin-right:6px}
+.stat .price-now{color:inherit}
 .success{display:none;text-align:center;background:var(--paper);border:1px solid var(--gold);border-radius:4px;padding:60px 40px}
 .success .big{font-family:var(--script);font-size:2.5rem;color:var(--ink);margin-bottom:14px}
 .success p{max-width:52ch;margin:0 auto 10px;color:var(--muted)}
@@ -457,7 +462,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     <div class="statrow rv">
       <div class="stat"><b>26</b><span>Teams of Two</span></div>
       <div class="stat"><b>18</b><span>Holes, Full Shotgun</span></div>
-      <div class="stat"><b>$25</b><span>Budtender / Person</span></div>
+      <div class="stat"><b><span class="price-strike">$50</span> <span class="price-now">$25</span></b><span>Lottery Winners / Person<em class="price-note">Invited guests $50 · *All proceeds go to our charity partner</em></span></div>
       <div class="stat"><b>100%</b><span>of Tickets to LPP</span></div>
     </div>
     <figure class="photo-frame rv">
@@ -479,7 +484,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="step-card rv">
         <p class="step-num">Step One</p>
         <h3>Enter the Lottery</h3>
-        <p>Register your two-person team by <strong>September 30</strong>. Winners drawn the following week — budtenders pay $25/person, invited dispensaries pay $50/person.</p>
+        <p>Register your two-person team by <strong>September 30</strong>. Winners drawn the following week — lottery winners pay <strong>$25/person</strong> (regular $50), invited guests pay $50/person. *All proceeds go to our charity partner.</p>
       </div>
       <div class="step-card rv">
         <p class="step-num">Step Two</p>
@@ -819,7 +824,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <li><strong>Entry is free</strong> — register below</li>
           <li><strong>Deadline:</strong> Wednesday, September 30, 2026</li>
           <li><strong>Draw:</strong> Winners announced the following week</li>
-          <li><strong>If selected:</strong> Budtenders pay $25/person, invited dispensaries pay $50/person</li>
+          <li><strong>If selected:</strong> Lottery winners pay <strong>$25/person</strong> (regular $50); invited guests pay $50/person. *All proceeds go to our charity partner</li>
           <li><strong>26 teams</strong> total — lottery + sponsor allocations</li>
         </ul>
       </div>
@@ -847,7 +852,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <h3>Team Information</h3>
         <div class="frow"><label for="teamName">Team Name *</label><input type="text" id="teamName" placeholder="e.g. The Green Eagles" required></div>
         <div class="frow"><label for="dispensary">Dispensary / Company *</label><input type="text" id="dispensary" placeholder="e.g. The Dispensary NYC" required></div>
-        <div class="frow"><label for="instaHandle">Instagram Handle</label><input type="text" id="instaHandle" placeholder="@yourhandle"><div class="hint">We'll DM winners here</div></div>
         <div class="frow">
           <label>Afternoon Activity *</label>
           <div class="act-pick">
@@ -930,7 +934,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     </div>
 
     <div class="faq-cat rv"><h3>Tickets &amp; Lottery</h3>
-      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Submissions close September 30. Winners announced the following week. If selected, budtenders pay $25/person, invited dispensaries pay $50/person — we send a payment link.</p></div></div>
+      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Submissions close September 30. Winners announced the following week. If selected, lottery winners pay $25/person (regular $50) and invited guests pay $50/person — we send a payment link. *All proceeds go to our charity partner.</p></div></div>
       <div class="qa"><button aria-expanded="false">Can I bring spectators?</button><div class="ans"><p>Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.</p></div></div>
       <div class="qa"><button aria-expanded="false">I was invited by a sponsor. How do I register?</button><div class="ans"><p>Your sponsor will provide a private registration link.</p></div></div>
     </div>
@@ -1107,7 +1111,7 @@ function nextStep(n){
   if(currentStep===4&&(!document.getElementById('consentTerms').checked)){alert('Please confirm both players are NY dispensary staff.');return}
   if(currentStep===4&&n===5){
     var act=document.querySelector('input[name="activity"]:checked').value;
-    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Company:</strong> '+esc(val('dispensary'))+'</p><p><strong>Instagram:</strong> '+esc(val('instaHandle')||'—')+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($20/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+' at '+esc(val('p1company'))+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+' at '+esc(val('p2company'))+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
+    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Company:</strong> '+esc(val('dispensary'))+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($20/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+' at '+esc(val('p1company'))+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+' at '+esc(val('p2company'))+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
   }
   currentStep=n;updateSteps();
 }
@@ -1122,7 +1126,6 @@ function collectEntry(){
   return {
     team_name:val('teamName'),
     company:val('dispensary'),
-    instagram:val('instaHandle'),
     afternoon_activity:act,
     p1_name:val('p1name'),
     p1_email:val('p1email'),
@@ -1191,11 +1194,11 @@ var eventKB={
   'date':'Monday, October 26, 2026.',
   'venue':'Red Hook Golf Club, 650 Route 199, Red Hook, NY 12571. Est. 1931. Par 72, 6,564 yards. Rating 71.8/slope 132.',
   'golf':'Two-person team scramble. Full shotgun start across 18 holes. 26 teams. Morning 9, lunch, afternoon 9. Carts included.',
-  'teams':'26 teams of 2 (52 players). Staff of dispensaries carrying Lowell or Layup products. Budtender lottery $25/person, invited $50/person, or comped by sponsors.',
+  'teams':'26 teams of 2 (52 players). Staff of dispensaries carrying Lowell or Layup products. Lottery winners $25/person (regular $50), invited guests $50/person, or comped by sponsors.',
   'cornhole':'Two-person teams, $20/player, unlimited, starts 12:30pm. Exact format adapts to the number of teams that enter — announced at registration.',
   'schedule':'9:30-10am Arrival. 10:30am Morning shotgun. 12:30pm Lunch + Cornhole starts. 2pm Afternoon golf. 4:20pm Awards. 5:30pm Wind-down.',
-  'cost':'Budtender lottery $25/person, invited $50/person. Cornhole $20/player. Spectator tickets: $100 each. 100% of tickets go to LPP.',
-  'lottery':'Register by September 30. Winners announced the following week. If selected, budtenders pay $25/person, invited dispensaries pay $50/person. We send a payment link.',
+  'cost':'Lottery winners $25/person (regular $50), invited guests $50/person. Cornhole $20/player. Spectator tickets: $100 each. 100% of tickets go to LPP.',
+  'lottery':'Register by September 30. Winners announced the following week. If selected, lottery winners pay $25/person (regular $50), invited guests pay $50/person. We send a payment link. All proceeds go to our charity partner.',
   'spectator':'Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.',
   'prizes':'Golf: $500/$300/$200. Cornhole: $250/$150/$100.',
   'sponsor':'Sponsors get comped teams, logo placement, social amplification, on-site presence, retailer access, charity alignment, dedicated page.',
