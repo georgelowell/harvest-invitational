@@ -734,12 +734,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <span class="sp-blurb">NY-based THC-infused beverages. Co-founded by NBA champion J.R. Smith.</span>
         <span class="sp-more">Learn more →</span>
       </div>
-      <div class="sp-card rv" onclick="openModal('m-jane')">
-        <span class="sp-logo"><img src="images/iheartjane-logo.webp" alt="iHeartJane logo" loading="lazy"></span>
-        <span><span class="sp-name">iHeartJane</span><span class="sp-tag">Cannabis Commerce Platform</span></span>
-        <span class="sp-blurb">The cannabis industry's largest digital commerce and retail platform.</span>
-        <span class="sp-more">Learn more →</span>
-      </div>
       <div class="sp-card rv" onclick="openModal('m-trustco')">
         <span class="sp-logo"><img src="images/trustco-logo.jpg" alt="TrustCo Bank logo" loading="lazy"></span>
         <span><span class="sp-name">TrustCo Bank</span><span class="sp-tag">Your Home Town Bank</span></span>
@@ -805,7 +799,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     <p class="eyebrow" style="justify-content:center">Exhibitors</p>
     <h2 class="sec">Showcase Your Harvest</h2>
     <p class="lede">We're inviting Hudson Valley cannabis growers to exhibit at the Croptober Cup. Showcase flower from this year's harvest to dispensary staff, brand partners, and industry insiders.</p>
-    <p class="mailcta">Interested? Reach out to <a href="mailto:george@lowellherbco.com">george@lowellherbco.com</a></p>
+    <p class="mailcta">Interested? Reach out to <a href="mailto:TheCup@lowellherbco.com">TheCup@lowellherbco.com</a></p>
   </div>
 </section>
 
@@ -824,7 +818,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <li><strong>Entry is free</strong> — register below</li>
           <li><strong>Deadline:</strong> Wednesday, September 30, 2026</li>
           <li><strong>Draw:</strong> Winners announced the following week</li>
-          <li><strong>If selected:</strong> Lottery winners pay <strong>$25/person</strong> (regular $50); invited guests pay $50/person. *All proceeds go to our charity partner</li>
+          <li><strong>If selected:</strong> Lottery winners pay <strong>$25/person</strong> (invited guests pay $50/person). *All proceeds go to our charity partner the Last Prisoner Project</li>
           <li><strong>26 teams</strong> total — lottery + sponsor allocations</li>
         </ul>
       </div>
@@ -832,8 +826,9 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <h3>What You Need</h3>
         <ul>
           <li>Team name</li>
+          <li>Dispensary name</li>
           <li>Both players' names, emails &amp; phones</li>
-          <li>Each player's role &amp; company</li>
+          <li>Each player's role</li>
           <li>Afternoon activity choice: Golf (second 9) or Cornhole</li>
         </ul>
       </div>
@@ -851,7 +846,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="fstep active" id="step1">
         <h3>Team Information</h3>
         <div class="frow"><label for="teamName">Team Name *</label><input type="text" id="teamName" placeholder="e.g. The Green Eagles" required></div>
-        <div class="frow"><label for="dispensary">Dispensary / Company *</label><input type="text" id="dispensary" placeholder="e.g. The Dispensary NYC" required></div>
+        <div class="frow"><label for="dispensary">Dispensary Name *</label><input type="text" id="dispensary" placeholder="e.g. The Dispensary NYC" required></div>
         <div class="frow">
           <label>Afternoon Activity *</label>
           <div class="act-pick">
@@ -873,7 +868,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <div class="frow"><label for="p1role">Role *</label>
             <select id="p1role"><option value="">Select...</option><option value="Budtender">Budtender</option><option value="Store Manager">Store Manager</option><option value="Buyer/Purchasing">Buyer</option><option value="Brand Rep">Brand Representative</option><option value="Grower">Grower</option><option value="Marketing">Marketing</option><option value="Executive">Executive</option><option value="Compliance">Compliance</option><option value="Other">Other</option></select>
           </div>
-          <div class="frow full"><label for="p1company">Company / Brand *</label><input type="text" id="p1company" placeholder="Who do you work for?" required></div>
         </div>
         <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(1)">← Back</button><button type="button" class="btn-step" onclick="nextStep(3)">Next: Player 2 →</button></div>
       </div>
@@ -888,7 +882,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
           <div class="frow"><label for="p2role">Role *</label>
             <select id="p2role"><option value="">Select...</option><option value="Budtender">Budtender</option><option value="Store Manager">Store Manager</option><option value="Buyer/Purchasing">Buyer</option><option value="Brand Rep">Brand Representative</option><option value="Grower">Grower</option><option value="Marketing">Marketing</option><option value="Executive">Executive</option><option value="Compliance">Compliance</option><option value="Other">Other</option></select>
           </div>
-          <div class="frow full"><label for="p2company">Company / Brand *</label><input type="text" id="p2company" placeholder="Who do they work for?" required></div>
         </div>
         <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(2)">← Back</button><button type="button" class="btn-step" onclick="nextStep(4)">Next: Payment →</button></div>
       </div>
@@ -928,21 +921,21 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     </div>
 
     <div class="faq-cat rv"><h3>General</h3>
-      <div class="qa"><button aria-expanded="false">What is the Croptober Cup?</button><div class="ans"><p>A relaxed golf and cornhole invitational for New York's cannabis community. 26 teams of 2 play a morning-nine and afternoon-nine shotgun scramble at Red Hook Golf Club, with lunch, live music, and more. Benefiting the Last Prisoner Project.</p></div></div>
+      <div class="qa"><button aria-expanded="false">What is the Croptober Cup?</button><div class="ans"><p>A relaxed golf and cornhole invitational for New York's cannabis community. 26 golfing teams of 2 play a morning-nine and afternoon-nine shotgun scramble at Red Hook Golf Club, with lunch, live music, and more. Benefiting the Last Prisoner Project.</p></div></div>
       <div class="qa"><button aria-expanded="false">When and where is it?</button><div class="ans"><p>Monday, October 26, 2026 at Red Hook Golf Club, 650 Route 199, Red Hook, NY 12571.</p></div></div>
-      <div class="qa"><button aria-expanded="false">Who can play?</button><div class="ans"><p>Staff of dispensaries that carry Lowell or Layup products. A portion of teams are budtender lottery entrants, a portion by sponsoring brands.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Who can play?</button><div class="ans"><p>Staff of dispensaries that carry Lowell or Layup products. A portion of teams are budtender lottery entrants, a portion are direct invitees from the brands and sponsors</p></div></div>
     </div>
 
     <div class="faq-cat rv"><h3>Tickets &amp; Lottery</h3>
-      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Submissions close September 30. Winners announced the following week. If selected, lottery winners pay $25/person (regular $50) and invited guests pay $50/person — we send a payment link. *All proceeds go to our charity partner.</p></div></div>
-      <div class="qa"><button aria-expanded="false">Can I bring spectators?</button><div class="ans"><p>Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.</p></div></div>
+      <div class="qa"><button aria-expanded="false">How do I enter the lottery?</button><div class="ans"><p>Register below! Submissions close September 30. Winners announced the following week. If selected, lottery winners pay $25/person (invited guests pay $50/person) — we send a payment link. *All proceeds go to our charity partner the Last Prisoner Project.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Can I bring spectators?</button><div class="ans"><p>Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots. If interested, reach out to TheCup@lowellherbco.com</p></div></div>
       <div class="qa"><button aria-expanded="false">I was invited by a sponsor. How do I register?</button><div class="ans"><p>Your sponsor will provide a private registration link.</p></div></div>
     </div>
 
     <div class="faq-cat rv"><h3>Golf &amp; Format</h3>
       <div class="qa"><button aria-expanded="false">What's the format?</button><div class="ans"><p>Two-person scramble. Full shotgun start across 18 holes. Morning 9, lunch, afternoon 9.</p></div></div>
       <div class="qa"><button aria-expanded="false">How does cornhole work?</button><div class="ans"><p>Two-person teams, $20/player, starts 12:30 PM. Exact format adapts to the number of teams that enter — announced at registration. Golfers can opt in instead of afternoon nine.</p></div></div>
-      <div class="qa"><button aria-expanded="false">Do I need my own clubs?</button><div class="ans"><p>Yes — bring your own clubs and your A-game. Rentals aren't offered so we keep the field to experienced players and keep the pace moving.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Do I need my own clubs?</button><div class="ans"><p>Yes — bring your own clubs and your A-game. Rentals aren't offered so we keep the field to experienced players and keep the pace moving. If you are not an experienced golfer, please consider entering into the cornhole tournament.</p></div></div>
     </div>
 
     <div class="faq-cat rv"><h3>Charity</h3>
@@ -950,7 +943,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     </div>
 
     <div class="faq-cat rv"><h3>Exhibitors</h3>
-      <div class="qa"><button aria-expanded="false">Can I exhibit my grow?</button><div class="ans"><p>Yes — email <a href="mailto:george@lowellherbco.com"><strong>george@lowellherbco.com</strong></a>.</p></div></div>
+      <div class="qa"><button aria-expanded="false">Can I exhibit my grow?</button><div class="ans"><p>Yes — email <a href="mailto:TheCup@lowellherbco.com"><strong>TheCup@lowellherbco.com</strong></a>.</p></div></div>
     </div>
 
     <!-- BOT -->
@@ -1001,7 +994,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
 
 <!-- ================= SPONSOR MODALS ================= -->
 <div class="modal" id="m-layup" role="dialog" aria-modal="true" aria-label="Layup"><div class="modal-card"><button class="modal-close" aria-label="Close">&times;</button><div class="m-logo"><img src="images/layup-logo.jpeg" alt="Layup logo"></div><h3>Layup</h3><p class="m-tag">NY-Based THC-Infused Beverages</p><p>Co-founded by J.R. Smith — former NBA champion and current collegiate golfer. 12oz cans with 10mg fast-acting THC. Vegan, gluten-free. Tagline: <strong>"Hitting the Green Has Never Been Easier."</strong></p><a class="ext" href="https://layupbeverage.com" target="_blank" rel="noopener">Visit Layup →</a></div></div>
-<div class="modal" id="m-jane" role="dialog" aria-modal="true" aria-label="iHeartJane"><div class="modal-card"><button class="modal-close" aria-label="Close">&times;</button><div class="m-logo"><img src="images/iheartjane-logo.webp" alt="iHeartJane logo"></div><h3>iHeartJane</h3><p class="m-tag">The Cannabis Industry's Digital Commerce Platform</p><p>Powers ~20% of all US legal cannabis transactions. 1,700+ dispensaries across 31+ states. Founded by Army vet/MIT MBA Socrates Rosenfeld.</p><a class="ext" href="https://www.iheartjane.com" target="_blank" rel="noopener">Visit iHeartJane →</a></div></div>
 <div class="modal" id="m-trustco" role="dialog" aria-modal="true" aria-label="TrustCo Bank"><div class="modal-card"><button class="modal-close" aria-label="Close">&times;</button><div class="m-logo"><img src="images/trustco-logo.jpg" alt="TrustCo Bank logo"></div><h3>TrustCo Bank</h3><p class="m-tag">Your Home Town Bank Since 1902</p><p>$6.3B in assets, 146 branches. Best Small Bank in NY (Newsweek 2025). Over $1M donated to 200+ community organizations.</p><a class="ext" href="https://www.trustcobank.com" target="_blank" rel="noopener">Visit TrustCo Bank →</a></div></div>
 <div class="modal" id="m-lpp" role="dialog" aria-modal="true" aria-label="Last Prisoner Project"><div class="modal-card"><button class="modal-close" aria-label="Close">&times;</button><h3>Last Prisoner Project</h3><p class="m-tag">Charity Partner</p><p>360+ years saved, 242,000+ records cleared, 24 presidential clemency grants, $3.8M+ in direct aid. Charity Navigator Four-Star. 100% of ticket proceeds from the Croptober Cup go to LPP.</p><a class="ext" href="https://www.lastprisonerproject.org" target="_blank" rel="noopener">Learn more →</a></div></div>
 
@@ -1146,18 +1138,18 @@ function updateSteps(){
 }
 function val(id){return document.getElementById(id).value.trim()}
 function nextStep(n){
-  if(currentStep===1&&(!val('teamName')||!val('dispensary'))){alert('Please fill in Team Name and Company.');return}
-  if(currentStep===2&&(!val('p1name')||!val('p1email')||!val('p1phone')||!val('p1company'))){alert('Please fill in all Player 1 fields.');return}
+  if(currentStep===1&&(!val('teamName')||!val('dispensary'))){alert('Please fill in Team Name and Dispensary Name.');return}
+  if(currentStep===2&&(!val('p1name')||!val('p1email')||!val('p1phone'))){alert('Please fill in all Player 1 fields.');return}
   if(currentStep===2&&!document.getElementById('p1role').value){alert('Please select a role for Player 1.');return}
   if(currentStep===2&&!isEmail(val('p1email'))){alert('Please enter a valid email for Player 1.');return}
-  if(currentStep===3&&(!val('p2name')||!val('p2email')||!val('p2phone')||!val('p2company'))){alert('Please fill in all Player 2 fields.');return}
+  if(currentStep===3&&(!val('p2name')||!val('p2email')||!val('p2phone'))){alert('Please fill in all Player 2 fields.');return}
   if(currentStep===3&&!document.getElementById('p2role').value){alert('Please select a role for Player 2.');return}
   if(currentStep===3&&!isEmail(val('p2email'))){alert('Please enter a valid email for Player 2.');return}
   if(currentStep===3&&val('p1email').toLowerCase()===val('p2email').toLowerCase()){alert('Each player needs a different email address.');return}
   if(currentStep===4&&(!document.getElementById('consentTerms').checked)){alert('Please confirm both players are NY dispensary staff.');return}
   if(currentStep===4&&n===5){
     var act=document.querySelector('input[name="activity"]:checked').value;
-    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Company:</strong> '+esc(val('dispensary'))+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($20/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+' at '+esc(val('p1company'))+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+' at '+esc(val('p2company'))+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
+    document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Dispensary:</strong> '+esc(val('dispensary'))+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($20/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
   }
   currentStep=n;updateSteps();
 }
@@ -1177,12 +1169,10 @@ function collectEntry(){
     p1_email:val('p1email'),
     p1_phone:val('p1phone'),
     p1_role:document.getElementById('p1role').value,
-    p1_company:val('p1company'),
     p2_name:val('p2name'),
     p2_email:val('p2email'),
     p2_phone:val('p2phone'),
     p2_role:document.getElementById('p2role').value,
-    p2_company:val('p2company'),
     consent_staff:!!document.getElementById('consentTerms').checked
   };
 }
@@ -1227,7 +1217,7 @@ function submitEntry(){
     if(btn){btn.disabled=false;btn.textContent='Submit Entry →'}
     var box=document.getElementById('submitError');
     if(box){
-      box.textContent='We couldn\'t submit your entry: '+(e&&e.name==='AbortError'?'the request timed out.':e.message)+' Please check your connection and try again, or email george@lowellherbco.com.';
+      box.textContent='We couldn\'t submit your entry: '+(e&&e.name==='AbortError'?'the request timed out.':e.message)+' Please check your connection and try again, or email TheCup@lowellherbco.com.';
       box.style.display='block';
       box.scrollIntoView({behavior:'smooth',block:'center'});
     } else { alert('Submission failed. Please try again.'); }
@@ -1248,13 +1238,13 @@ var eventKB={
   'spectator':'Yes — $100 spectator tickets. Full access, lunch, music. Limited to 10 spots.',
   'prizes':'Golf: $500/$300/$200. Cornhole: $250/$150/$100.',
   'sponsor':'Sponsors get comped teams, logo placement, social amplification, on-site presence, retailer access, charity alignment, dedicated page.',
-  'sponsors':'Layup, iHeartJane, TrustCo Bank, and Last Prisoner Project (charity).',
+  'sponsors':'Layup, TrustCo Bank, and Last Prisoner Project (charity).',
   'charity':'Last Prisoner Project. 100% of ticket proceeds (sponsors cover costs). 360+ years saved, 242K+ records cleared.',
   'food':'Lunch by The Grove. Fresh, local. Shaded tent, live music.',
   'music':'Chill DJ arrival/post-golf. Bennett Brothers live during lunch.',
   'consumption':'Lots of golf, delicious food, tunes, friends and a tiny bit of weed. NY-compliant.',
   'who':'Staff of dispensaries that carry Lowell or Layup products. Lottery entrants + sponsor allocations.',
-  'contact':'Email info@lowellherbco.com.',
+  'contact':'Email TheCup@lowellherbco.com.',
   'directions':'From NYC: ~2hr via Taconic. From Albany: ~1hr. From Hudson: 15min.'
 };
 function findAnswer(query){
@@ -1275,7 +1265,7 @@ function findAnswer(query){
     [/golf|format|scramble/,eventKB.golf],
     [/how (many|much) (hole|team|player|people)/,eventKB.teams],
     [/eligible|qualify|who can|dispensary|store|employee|work/,eventKB.who],
-    [/exhibit|showcase|vendor|grower|grow/,eventKB.contact+' Or email george@lowellherbco.com for exhibiting.'],
+    [/exhibit|showcase|vendor|grower|grow/,eventKB.contact+' Or email TheCup@lowellherbco.com for exhibiting.'],
     [/weather|cold|rain/,eventKB.date+' October in Hudson Valley: ~65°F high, mild.'],
     [/directions|drive|get there/,eventKB.directions],
     [/email|reach|call|phone|contact/,eventKB.contact]
