@@ -576,7 +576,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="xcard rv"><svg class="xi" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="17" cy="18" r="10"/><circle cx="17" cy="18" r="6"/><path d="M4 6 v7 M6.5 6 v7 M5.2 13 v9 M29 6 c-2.5 1.5 -2.5 8 0 9.5 V26"/></svg><h3>Food</h3><p>Catered by The Grove at Red Hook. Fresh, local, high-quality lunch under a shaded tent with live music.</p></div>
       <div class="xcard rv"><svg class="xi" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 25 V8 l14 -3 v17"/><circle cx="9" cy="25.5" r="3.4"/><circle cx="23" cy="22.5" r="3.4"/></svg><h3>Music</h3><p>Chill DJ on arrival and post-golf. The Bennett Brothers live during lunch (12:30-2PM). <a href="#music" data-nav="">See the lineup →</a></p></div>
       <div class="xcard rv"><svg class="xi" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 28 C 9 24 6 17 7 9 c 5 2 9 5 10 10 1 -5 5 -8 10 -10 1 8 -2 15 -10 19 Z"/><path d="M17 28 v-9"/></svg><h3>A Tiny Bit of Weed</h3><p>Lots of golf, delicious food, tunes, friends and a tiny bit of weed. NY-compliant.</p></div>
-      <div class="xcard rv"><svg class="xi" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 12 q4 -6 10 -6 t10 6"/><path d="M9 18 v3 M13 16 v5 M17 18 v6 M21 16 v5 M25 18 v3"/></svg><h3>Misters</h3><p>Fine mist cooling under the tent. October temps ~65°F — mild and perfect for golf.</p></div>
       <div class="xcard rv"><svg class="xi" viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 6 h12 v6 a6 6 0 0 1 -12 0 Z M11 8 H7 a4 4 0 0 0 4 5 M23 8 h4 a4 4 0 0 1 -4 5 M17 18 v5 M12 27 h10 M14 23 h6"/></svg><h3>Prizes</h3><p>Cash prizes for winning teams, underwritten by our sponsors — 100% of tickets go to Last Prisoner Project.</p></div>
     </div>
   </div>
@@ -932,6 +931,12 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="qa"><button aria-expanded="false">I was invited by a sponsor. How do I register?</button><div class="ans"><p>Your sponsor will provide a private registration link.</p></div></div>
     </div>
 
+    <div class="faq-cat rv"><h3>Weather &amp; What to Wear</h3>
+      <div class="qa"><button aria-expanded="false">What will the weather be like?</button><div class="ans"><p>Late October in the Hudson Valley is cool and changeable. Expect a high near 55°F and a morning low in the mid-40s. It can feel considerably colder on the course before the sun is up and while you're moving between holes, so plan for a cool start.</p></div></div>
+      <div class="qa"><button aria-expanded="false">How should I dress?</button><div class="ans"><p>Dress in layers you can shed as it warms. A base layer, a sweater or fleece, and a windproof outer layer work well. Bring a hat and gloves for the morning nine — the first few holes are the coldest. Comfortable footwear matters more than style; the course can be damp.</p></div></div>
+      <div class="qa"><button aria-expanded="false">What if it rains?</button><div class="ans"><p>Plan for the chance of rain — October averages about 4 inches in this area, so it's a real possibility. Bring rain gear and an umbrella. The event runs rain or shine, and there's covered seating under the tent for lunch and the cornhole tournament.</p></div></div>
+    </div>
+
     <div class="faq-cat rv"><h3>Golf &amp; Format</h3>
       <div class="qa"><button aria-expanded="false">What's the format?</button><div class="ans"><p>Two-person scramble. Full shotgun start across 18 holes. Morning 9, lunch, afternoon 9.</p></div></div>
       <div class="qa"><button aria-expanded="false">How does cornhole work?</button><div class="ans"><p>Two-person teams, $20/player, starts 12:30 PM. Exact format adapts to the number of teams that enter — announced at registration. Golfers can opt in instead of afternoon nine.</p></div></div>
@@ -1266,7 +1271,7 @@ function findAnswer(query){
     [/how (many|much) (hole|team|player|people)/,eventKB.teams],
     [/eligible|qualify|who can|dispensary|store|employee|work/,eventKB.who],
     [/exhibit|showcase|vendor|grower|grow/,eventKB.contact+' Or email TheCup@lowellherbco.com for exhibiting.'],
-    [/weather|cold|rain/,eventKB.date+' October in Hudson Valley: ~65°F high, mild.'],
+    [/weather|cold|rain/,eventKB.date+' Late October in the Hudson Valley is cool: high near 55°F, morning low in the mid-40s, and a real chance of rain. Dress in layers, bring a hat and gloves for the morning nine, and pack rain gear.'],
     [/directions|drive|get there/,eventKB.directions],
     [/email|reach|call|phone|contact/,eventKB.contact]
   ];
