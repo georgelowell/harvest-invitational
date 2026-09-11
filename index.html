@@ -1260,7 +1260,8 @@ function findAnswer(query){
     [/when|what time|what day/,'Date: '+eventKB.date+' Schedule: '+eventKB.schedule],
     [/where is it|location|address/,eventKB.venue+' Directions: '+eventKB.directions],
     [/how much|price|cost|fee|dollar|charge|ticket|pay/,'Entry: '+eventKB.cost],
-    [/eat|lunch|food|meal|menu|cater/,eventKB.food],
+    [/weather|forecast|\bcold\b|\brain\b|\bwear\b|dress|jacket|layers|warm/,eventKB.date+' Late October in the Hudson Valley is cool: high near 55°F, morning low in the mid-40s, and a real chance of rain. Dress in layers, bring a hat and gloves for the morning nine, and pack rain gear.'],
+    [/\beat\b|\blunch\b|\bfood\b|\bmeal\b|\bmenu\b|\bcater/,eventKB.food],
     [/music|band|dj|bennett|live/,eventKB.music],
     [/cornhole|bags|boards|beanbag/,eventKB.cornhole],
     [/smoke|vape|weed|cannabis|consume/,eventKB.consumption],
@@ -1271,14 +1272,13 @@ function findAnswer(query){
     [/how (many|much) (hole|team|player|people)/,eventKB.teams],
     [/eligible|qualify|who can|dispensary|store|employee|work/,eventKB.who],
     [/exhibit|showcase|vendor|grower|grow/,eventKB.contact+' Or email TheCup@lowellherbco.com for exhibiting.'],
-    [/weather|cold|rain/,eventKB.date+' Late October in the Hudson Valley is cool: high near 55°F, morning low in the mid-40s, and a real chance of rain. Dress in layers, bring a hat and gloves for the morning nine, and pack rain gear.'],
     [/directions|drive|get there/,eventKB.directions],
     [/email|reach|call|phone|contact/,eventKB.contact]
   ];
   for(var i=0;i<rules.length;i++){if(rules[i][0].test(t))return rules[i][1]}
   var words=t.split(/\s+/);
   for(var w=0;w<words.length;w++){if(words[w].length>3){for(var k in eventKB){if(k.includes(words[w]))return eventKB[k]}}}
-  return null;
+  return 'Good question! I don\'t have that one — email TheCup@lowellherbco.com and the team will get right back to you.';
 }
 function quickAsk(q){document.getElementById('bot-input').value=q;sendMsg()}
 function addBot(msg){
