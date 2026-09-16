@@ -1336,7 +1336,11 @@ function submitEntry(){
       track('submit_success','');
       if(line)line.innerHTML='Your team <strong>'+team+'</strong> has been registered for the Croptober Cup lottery. We\'ll notify winners in Early October.';
     }
-    document.getElementById('confirmTeam').textContent=payload.team_name;
+    // NOTE: do NOT try to set #confirmTeam here. line.innerHTML above has
+    // already replaced #confirmLine's contents, which destroys the nested
+    // <strong id="confirmTeam">. Touching it afterwards threw a TypeError that
+    // dropped us into .catch() and showed a false "couldn't submit" error even
+    // though the entry had been stored successfully.
     document.getElementById('lotteryForm').style.display='none';
     document.getElementById('stepper').style.display='none';
     document.getElementById('successScreen').style.display='block';
