@@ -442,8 +442,8 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     <p class="hero-sub">A Day of Golf and Cornhole with Industry Friends.</p>
     <p class="hero-date">Monday, October 26, 2026 — Red Hook Golf Club, NY</p>
     <div class="hero-ctas">
-      <a href="#enter" class="btn btn-gold" data-nav="">Enter the Lottery</a>
-      <a href="#event" class="btn btn-ghost" data-nav="">Event Details</a>
+      <a href="#enter" class="btn btn-gold" data-nav="" data-track="cta_hero_enter_lottery">Enter the Lottery</a>
+      <a href="#event" class="btn btn-ghost" data-nav="" data-track="cta_hero_event_details">Event Details</a>
     </div>
     <div class="countdown" id="countdown" aria-label="Countdown to event day">
       <div class="cd"><b id="cd-d">108</b><span>Days</span></div>
@@ -791,7 +791,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
       <div class="lpp-stat"><b>360+</b><span>Years of prison time saved</span></div>
       <div class="lpp-stat"><b>242,000+</b><span>Records cleared</span></div>
     </div>
-    <button class="btn btn-gold rv" onclick="openModal('m-lpp')" style="border:0">Learn about LPP</button>
+    <button class="btn btn-gold rv" onclick="openModal('m-lpp')" style="border:0" data-track="cta_learn_lpp">Learn about LPP</button>
   </div>
 </section>
 
@@ -1162,6 +1162,7 @@ function nextStep(n){
     document.getElementById('reviewContent').innerHTML='<p><strong>Team:</strong> '+esc(val('teamName'))+'</p><p><strong>Dispensary:</strong> '+esc(val('dispensary'))+'</p><p><strong>Afternoon:</strong> '+(act==='golf'?'Golf (second 9)':'Cornhole ($20/player)')+'</p><hr><p><strong>Player 1:</strong> '+esc(val('p1name'))+'</p><p class="rv-sub">'+esc(val('p1email'))+' · '+esc(val('p1phone'))+' · '+esc(document.getElementById('p1role').value)+'</p><p><strong>Player 2:</strong> '+esc(val('p2name'))+'</p><p class="rv-sub">'+esc(val('p2email'))+' · '+esc(val('p2phone'))+' · '+esc(document.getElementById('p2role').value)+'</p><hr><p><strong>No payment needed now.</strong> If selected, we\'ll send a payment link.</p>';
   }
   currentStep=n;updateSteps();
+  track('form_step','step'+n);
 }
 function prevStep(n){currentStep=n;updateSteps()}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
@@ -1188,6 +1189,55 @@ function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)}
 
 var SUBMIT_ENDPOINT='https://croptober-collector-844482685472.us-central1.run.app/submit';
 var COUNT_ENDPOINT=SUBMIT_ENDPOINT.replace(/\/submit$/,'/count');
+var EVENT_ENDPOINT=SUBMIT_ENDPOINT.replace(/\/submit$/,'/event');
+
+/* ============ SITE ANALYTICS ============
+   First-party only: no cookies, no third-party script, no raw IPs, no form
+   content ever sent. An anonymous visit id lives in localStorage purely to
+   count unique visitors. Failures are silent — analytics must never break the
+   page or block a submission. */
+function visitId(){
+  try{
+    var k='cc_vid',v=localStorage.getItem(k);
+    if(!v){v=Date.now().toString(36)+Math.random().toString(36).slice(2,10);localStorage.setItem(k,v)}
+    return v;
+  }catch(e){return ''}
+}
+function track(name,label){
+  try{
+    fetch(EVENT_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:name,
+        label:(label||'').slice(0,120),
+        path:location.pathname,
+        ref:document.referrer||'',
+        vid:visitId()
+      }),
+      keepalive:true
+    }).catch(function(){});
+  }catch(e){}
+}
+function slugOf(s){return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,48)}
+
+// One delegated listener catches every link/button click on the site, so new
+// elements are tracked automatically without touching each one.
+document.addEventListener('click',function(e){
+  var el=e.target&&e.target.closest?e.target.closest('a,button,[data-track]'):null;
+  if(!el)return;
+  var explicit=el.getAttribute('data-track');
+  if(explicit){track(explicit,el.getAttribute('data-label')||'');return}
+  var txt=(el.innerText||el.textContent||'').trim();
+  if(el.tagName==='A')      track('link_click',  slugOf(txt)||slugOf(el.getAttribute('href')));
+  else if(el.tagName==='BUTTON') track('button_click', slugOf(txt));
+},true);
+
+// Activity choice on step 1.
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t&&t.name==='activity'&&t.checked) track('activity_select',t.value);
+},true);
 
 function collectEntry(){
   var act=document.querySelector('input[name="activity"]:checked').value;
@@ -1214,6 +1264,7 @@ function submitEntry(){
   var err=document.getElementById('submitError');
   var btn=document.getElementById('submitBtn');
   submitting=true;
+  track('submit_attempt','');
   if(err){err.style.display='none';err.textContent=''}
   if(btn){btn.disabled=true;btn.textContent='Submitting…'}
 
@@ -1235,6 +1286,7 @@ function submitEntry(){
       throw new Error(msg);
     }
     // Only NOW do we claim success — after the server confirmed storage.
+    track('submit_success','');
     document.getElementById('confirmTeam').textContent=payload.team_name;
     document.getElementById('lotteryForm').style.display='none';
     document.getElementById('stepper').style.display='none';
@@ -1341,11 +1393,16 @@ function sendMsg(){
   if(!q)return;
   addUser(q);inp.value='';
   var a=findAnswer(q);
+  // Track only whether the knowledge base answered — never the question text.
+  track('bot_message', a?'kb_hit':'kb_miss');
   if(a){setTimeout(function(){addBot(esc(a))},300)}
   else{
     setTimeout(function(){showForm(q)},600);
   }
 }
+
+/* Fire the pageview last — everything above is wired by now. */
+track('pageview','');
 </script>
 
 </body>
