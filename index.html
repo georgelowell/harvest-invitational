@@ -909,7 +909,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
     <div class="success" id="successScreen">
       <svg class="tick" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="32" cy="32" r="29"/><path d="M20 33 l8.5 8.5 L45 24" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <p class="big">You're Entered!</p>
-      <p>Your team <strong id="confirmTeam"></strong> has been registered for the Croptober Cup lottery. We'll notify winners in Early October.</p>
+      <p id="confirmLine">Your team <strong id="confirmTeam"></strong> has been registered for the Croptober Cup lottery. We'll notify winners in Early October.</p>
       <p>Keep an eye on your inbox — we'll reach out at the email and phone number you provided if your team is drawn.</p>
     </div>
   </div>
@@ -1286,7 +1286,17 @@ function submitEntry(){
       throw new Error(msg);
     }
     // Only NOW do we claim success — after the server confirmed storage.
-    track('submit_success','');
+    // A duplicate (same team + player-1 email) means the ORIGINAL entry stands;
+    // say so plainly rather than implying a second registration was created.
+    var line=document.getElementById('confirmLine');
+    var team=esc(payload.team_name);
+    if(res.body.duplicate){
+      track('submit_duplicate','');
+      if(line)line.innerHTML='Your team <strong>'+team+'</strong> was <b>already entered</b> — we have your original registration on file, so no duplicate was created. We\'ll notify winners in Early October.';
+    } else {
+      track('submit_success','');
+      if(line)line.innerHTML='Your team <strong>'+team+'</strong> has been registered for the Croptober Cup lottery. We\'ll notify winners in Early October.';
+    }
     document.getElementById('confirmTeam').textContent=payload.team_name;
     document.getElementById('lotteryForm').style.display='none';
     document.getElementById('stepper').style.display='none';
