@@ -323,9 +323,6 @@ section{padding:96px 0}
 .review-box hr{border:none;border-top:1px dashed var(--paper-line);margin:12px 0}
 .review-box .rv-sub{color:var(--muted);padding-left:14px}
 .fb-error{background:#fdf3f2;border:1px solid #d9534f;border-left-width:3px;border-radius:3px;padding:16px 18px;margin-top:18px;color:#8a2b28;font-size:.9rem;line-height:1.6}
-.entry-count{text-align:center;margin-top:14px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.entry-count b{color:var(--gold-deep)}
-.entry-count.ec-hide{display:none}
 .btn-step[disabled]{opacity:.6;cursor:default}
 .price-strike{text-decoration:line-through;text-decoration-thickness:2px;opacity:.55;font-weight:600}
 .price-now{color:var(--gold);font-weight:700}
@@ -904,7 +901,6 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <div class="review-box" id="reviewContent"></div>
         <div class="fb-error" id="submitError" role="alert" style="display:none"></div>
         <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(4)">← Edit</button><button type="button" class="btn-step" id="submitBtn" onclick="submitEntry()">Submit Entry →</button></div>
-        <div class="entry-count ec-hide" id="entryCount" aria-live="polite"></div>
       </div>
     </form>
 
@@ -1144,7 +1140,6 @@ function updateSteps(){
     if(i===currentStep){dot.classList.add('active');st.classList.add('active')}
     else if(i<currentStep)dot.classList.add('done');
   }
-  if(currentStep===5)refreshEntryCount();
   var y=document.getElementById('stepper').getBoundingClientRect().top+window.scrollY-90;
   window.scrollTo({top:y,behavior:'smooth'});
 }
@@ -1187,29 +1182,13 @@ function nextStep(n){
 }
 function prevStep(n){currentStep=n;if(n===4)renderAffirmations();updateSteps()}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
-// Live entry counter. Reads the collector's /count (authoritative GCS object
-// count), so it stays accurate even when the Sheet view lags behind.
-function refreshEntryCount(){
-  var el=document.getElementById('entryCount');
-  if(!el)return;
-  fetch(COUNT_ENDPOINT,{cache:'no-store'})
-    .then(function(r){return r.json()})
-    .then(function(j){
-      var n=(j&&typeof j.gcs_entries==='number')?j.gcs_entries:0;
-      if(n>0){
-        el.innerHTML=n.toLocaleString()+' team'+(n===1?' has':'s have')+' entered';
-      } else {
-        el.innerHTML='Be the first team to enter';
-      }
-      el.classList.remove('ec-hide');
-    })
-    .catch(function(){ /* leave hidden on failure — never show a wrong number */ });
-}
-refreshEntryCount();
+// NOTE: the live entry counter was deliberately REMOVED. Showing entrants how
+// many teams have submitted leaks the lottery's competitiveness and invites
+// strategic timing. The count is still available to us via the collector's
+// GET /count — it is simply no longer rendered on the public page.
 function isEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)}
 
 var SUBMIT_ENDPOINT='https://croptober-collector-844482685472.us-central1.run.app/submit';
-var COUNT_ENDPOINT=SUBMIT_ENDPOINT.replace(/\/submit$/,'/count');
 var EVENT_ENDPOINT=SUBMIT_ENDPOINT.replace(/\/submit$/,'/event');
 
 /* ============ SITE ANALYTICS ============
