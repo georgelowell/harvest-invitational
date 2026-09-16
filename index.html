@@ -1306,17 +1306,14 @@ function submitEntry(){
       throw new Error(msg);
     }
     // Only NOW do we claim success — after the server confirmed storage.
-    // A duplicate (same team + player-1 email) means the ORIGINAL entry stands;
-    // say so plainly rather than implying a second registration was created.
+    // NOTE: there is deliberately no "duplicate" branch. The collector NEVER
+    // suppresses a submission — every entry is stored and duplicates are merely
+    // flagged server-side for post-close cleanup. The old branch tested
+    // res.body.duplicate, which /submit has never returned, so it was dead code.
     var line=document.getElementById('confirmLine');
     var team=esc(payload.team_name);
-    if(res.body.duplicate){
-      track('submit_duplicate','');
-      if(line)line.innerHTML='Your team <strong>'+team+'</strong> was <b>already entered</b> — we have your original registration on file, so no duplicate was created. We\'ll notify winners in Early October.';
-    } else {
-      track('submit_success','');
-      if(line)line.innerHTML='Your team <strong>'+team+'</strong> has been registered for the Croptober Cup lottery. We\'ll notify winners in Early October.';
-    }
+    track('submit_success','');
+    if(line)line.innerHTML='Your team <strong>'+team+'</strong> has been registered for the Croptober Cup lottery. We\'ll notify winners in Early October.';
     // NOTE: do NOT try to set #confirmTeam here. line.innerHTML above has
     // already replaced #confirmLine's contents, which destroys the nested
     // <strong id="confirmTeam">. Touching it afterwards threw a TypeError that
