@@ -892,6 +892,7 @@ footer{background:#0b1c14;color:var(--sage);padding:70px 0 46px;border-top:1px s
         <label class="consent"><input type="checkbox" class="affirm" id="affirmPayment"><span id="affirmPaymentText"></span></label>
         <label class="consent" id="affirmGolferRow" style="display:none"><input type="checkbox" class="affirm" id="affirmGolfer"><span>I confirm that both players are experienced golfers with their own equipment. *</span></label>
         <label class="consent"><input type="checkbox" class="affirm" id="affirmStaff"><span>I confirm both players are staff of a licensed NY dispensary that carries Lowell or Layup products. *</span></label>
+        <label class="consent"><input type="checkbox" class="affirm" id="affirmTransport"><span>We can arrange our own transportation to and from the venue on October 26th. *</span></label>
         <div class="fnav"><button type="button" class="btn-back" onclick="prevStep(3)">← Back</button><button type="button" class="btn-step" onclick="nextStep(5)">Review Entry →</button></div>
       </div>
 
@@ -1158,6 +1159,7 @@ function renderAffirmations(){
 function affirmationsComplete(){
   if(!document.getElementById('affirmPayment').checked)return false;
   if(!document.getElementById('affirmStaff').checked)return false;
+  if(!document.getElementById('affirmTransport').checked)return false;
   var row=document.getElementById('affirmGolferRow');
   if(row&&row.style.display!=='none'&&!document.getElementById('affirmGolfer').checked)return false;
   return true;
