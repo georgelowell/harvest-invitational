@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /invite
+Disallow: /invite/
+Disallow: /invite.html
+Allow: /
+
+# /invite is the rep-attributed signup page. It is intentionally not linked
+# from anywhere on the site and carries no navigation; keeping it out of search
+# indexes keeps the attribution links out of public view.

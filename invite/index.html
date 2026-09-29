@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Deliberately not linked from anywhere on the site. noindex plus a
+     robots.txt Disallow keeps it out of search; the rep code in the query
+     string is what makes each invitation attributable. -->
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Claim your Croptober Cup invite</title>
+<link rel="icon" href="/images/croptober-cup-logo.png">
+<style>
+@font-face{font-family:'Howards Four';src:url(/assets/fonts/howards-four.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Howards Eight';src:url(/assets/fonts/howards-eight.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Howards Nine';src:url(/assets/fonts/howards-nine.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:400;src:url(/assets/fonts/gotham-book.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Gotham';font-style:normal;font-weight:700;src:url(/assets/fonts/gotham-bold.woff2) format('woff2');font-display:swap}
+:root{
+  --ink:#0f241b;--pine:#173727;--pine-line:#2c5240;--fern:#3e7154;--sage:#a9c4ae;
+  --sage-dim:#7d9c86;--ivory:#f2edde;--paper:#faf7ec;--paper-line:#ddd5bd;
+  --ink-text:#1d2c23;--muted:#5f6f62;--gold:#c2952f;--gold-bright:#e0b654;
+  --gold-deep:#9a7423;--copper:#b15e2f;
+  --display:'Howards Four',Georgia,serif;
+  --head:'Howards Eight',Georgia,serif;
+  --sans:'Gotham',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --w:1120px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--ink-text);background:var(--ivory);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+header{padding:26px 0 6px;text-align:center}
+.wordmark{font-family:var(--sans);font-weight:700;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep)}
+h1{font-family:var(--display);font-size:clamp(2rem,5.4vw,3.1rem);line-height:1.06;letter-spacing:.01em;margin:14px 0 10px;color:var(--ink-text)}
+.lede{color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:600px}
+.card{background:var(--paper);border:3px solid var(--gold);border-radius:5px;padding:30px 28px;margin:26px 0 40px;box-shadow:0 12px 40px rgba(15,36,27,.07)}
+h2{font-family:var(--head);font-size:1.42rem;margin:0 0 8px;color:var(--ink-text)}
+h3{font-family:var(--head);font-size:1.1rem;margin:26px 0 12px;color:var(--ink-text)}
+h3:first-child{margin-top:0}
+p{margin:0 0 14px}
+.rule{border-top:3px solid var(--gold);margin:18px 0 22px}
+.hint{font-size:.82rem;color:var(--muted);margin-top:8px}
+/* The activity gate. Nothing else on the page is reachable until one of these
+   is pressed, so the guest must declare Golf or Cornhole before answering
+   anything — which is what keeps the signups cleanly filed per contest. */
+.gate{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 4px}
+@media(max-width:560px){.gate{grid-template-columns:1fr}}
+.gate-btn{display:block;text-align:center;padding:26px 18px;border:2px solid var(--paper-line);background:#fff;border-radius:5px;cursor:pointer;font-family:var(--sans);transition:border-color .18s,transform .18s,box-shadow .18s}
+.gate-btn:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,36,27,.09)}
+.gate-btn b{display:block;font-family:var(--head);font-size:1.18rem;color:var(--ink-text);margin-bottom:4px}
+.gate-btn small{color:var(--muted);font-size:.84rem;line-height:1.5;display:block}
+.gate-btn.chosen{border-color:var(--fern);background:#f4f8f4;box-shadow:inset 0 0 0 1px var(--fern)}
+.frow{margin-bottom:18px}
+.frow label{display:block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-text);margin-bottom:7px}
+.frow input{width:100%;padding:13px 15px;border:1px solid var(--paper-line);border-radius:3px;font-size:.95rem;font-family:var(--sans);background:#fff;color:var(--ink-text);outline:none;transition:border-color .2s,box-shadow .2s}
+.frow input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(194,149,47,.15)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+.consent{display:flex;gap:11px;align-items:flex-start;margin:14px 0;font-size:.9rem;color:var(--muted);background:#fdfbf4;border:1px solid var(--paper-line);border-radius:4px;padding:14px}
+.consent input{margin-top:4px;accent-color:var(--gold-deep);flex:0 0 auto;width:17px;height:17px}
+.consent b{color:var(--ink-text)}
+.submit{display:block;width:100%;margin-top:22px;padding:17px 24px;border:3px solid var(--ink);background:var(--ink);color:var(--ivory);font-family:var(--sans);font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:opacity .2s,background .2s}
+.submit:disabled{opacity:.45;cursor:default}
+.submit:not(:disabled):hover{background:var(--fern);border-color:var(--fern)}
+.err{display:none;margin-top:16px;padding:13px 15px;border-left:3px solid #9a2f2f;background:#fbf1f1;color:#7d2626;font-size:.88rem}
+.hidden{display:none !important}
+.tick{width:64px;height:64px;color:var(--fern);margin:0 auto 14px;display:block}
+.success{display:none;text-align:center}
+.success .big{font-family:var(--head);font-size:1.7rem;margin:0 0 10px;color:var(--ink-text)}
+.success p{color:var(--muted)}
+footer{padding:0 0 46px;text-align:center;font-size:.8rem;color:var(--muted)}
+footer a{color:var(--gold-deep)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="wordmark">The Croptober Cup</div>
+    <h1>Claim your team's spot</h1>
+    <p class="lede">Monday, October 26 · Red Hook Golf Club. Two-person teams, benefiting the Last Prisoner Project.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card">
+
+    <!-- STEP 1 — the gate. No other question appears until this is answered. -->
+    <div id="gateStep">
+      <h2>First: what are you playing?</h2>
+      <p class="hint" style="margin-top:0">Pick one — teams play either golf or cornhole, not both.</p>
+      <div class="gate">
+        <button type="button" class="gate-btn" data-activity="golf">
+          <b>Golf</b>
+          <small>Two-person scramble. Nine holes in the morning, nine in the afternoon, carts and lunch included.</small>
+        </button>
+        <button type="button" class="gate-btn" data-activity="cornhole">
+          <b>Cornhole</b>
+          <small>Two-person teams. Starts 12:30 PM and runs through the afternoon. Prizes for the top three.</small>
+        </button>
+      </div>
+      <p class="hint" id="gateHint">Choose Golf or Cornhole to continue.</p>
+    </div>
+
+    <form id="inviteForm" class="hidden" onsubmit="return false;">
+      <h2>Your team</h2>
+      <p class="hint" id="activityLine" style="margin-top:0"></p>
+      <div class="rule"></div>
+
+      <div class="frow">
+        <label for="dispensary">Dispensary Name *</label>
+        <input type="text" id="dispensary" autocomplete="organization" placeholder="e.g. The Dispensary NYC" required>
+      </div>
+
+      <div class="frow">
+        <label for="teamName">Team Name <span style="text-transform:none;letter-spacing:0;color:var(--muted);font-weight:400">(optional)</span></label>
+        <input type="text" id="teamName" placeholder="What you want to be called on the scorecard">
+      </div>
+
+      <div class="rule"></div>
+      <h3>Player 1</h3>
+      <div class="fgrid">
+        <div class="frow full">
+          <label for="p1name">Full Name *</label>
+          <input type="text" id="p1name" autocomplete="name" placeholder="First &amp; Last" required>
+        </div>
+        <div class="frow">
+          <label for="p1email">Email *</label>
+          <input type="email" id="p1email" autocomplete="email" placeholder="you@email.com" required>
+        </div>
+        <div class="frow">
+          <label for="p1phone">Phone *</label>
+          <input type="tel" id="p1phone" autocomplete="tel" placeholder="(555) 123-4567" required>
+        </div>
+      </div>
+      <p class="hint">We contact Player 1 — the person claiming the spot. Your partner's details are collected at registration.</p>
+
+      <div class="rule"></div>
+      <h3>Player 2</h3>
+      <div class="frow">
+        <label for="p2name">Full Name *</label>
+        <input type="text" id="p2name" placeholder="First &amp; Last" required>
+      </div>
+      <p class="hint">You pick your partner. Whoever you want.</p>
+
+      <div class="rule"></div>
+      <h3>Entry fee</h3>
+      <label class="consent">
+        <input type="checkbox" id="consentFee">
+        <span><b>I understand the entry fee is $50 per person</b> — $100 for our two-person team — and that 100% of it goes to the Last Prisoner Project, the Croptober Cup's charity partner. Sponsors cover the cost of the day, so this is a donation. You'll be sent payment details before the event. *</span>
+      </label>
+
+      <button type="button" class="submit" id="submitBtn" disabled>Claim our spot →</button>
+      <div class="err" id="err" role="alert"></div>
+    </form>
+
+    <div class="success" id="successScreen">
+      <svg class="tick" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="32" cy="32" r="29"/><path d="M20 33 l8.5 8.5 L45 24" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p class="big">You're in.</p>
+      <p id="successLine">Your team's spot is claimed. A confirmation is on its way to your inbox — keep it, it's your record of entry.</p>
+      <p style="font-size:.88rem">Payment details for the $50 per person entry — all of it to the Last Prisoner Project — come by email before the event.</p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>The Croptober Cup · <a href="https://thecroptobercup.com">thecroptobercup.com</a> · <a href="mailto:TheCup@lowellherbco.com">TheCup@lowellherbco.com</a></p>
+  </div>
+</footer>
+
+<script>
+// The rep code travels in the query string. It is never rendered anywhere on the
+// page — the guest must not be able to tell that their signup is attributed to
+// anyone. Read once, held in memory, sent with the submission.
+var REP_CODE = (function () {
+  try {
+    var m = /[?&]r=([^&#]+)/.exec(location.search);
+    return m ? decodeURIComponent(m[1]).toLowerCase().slice(0, 40) : '';
+  } catch (e) { return ''; }
+})();
+
+var SUBMIT_ENDPOINT = 'https://croptober-collector-844482685472.us-central1.run.app/invite-submit';
+var EVENT_ENDPOINT = 'https://croptober-collector-844482685472.us-central1.run.app/event';
+
+function visitId() {
+  try {
+    var k = 'cc_vid', v = localStorage.getItem(k);
+    if (!v) { v = Date.now().toString(36) + Math.random().toString(36).slice(2, 10); localStorage.setItem(k, v); }
+    return v;
+  } catch (e) { return ''; }
+}
+// Same first-party telemetry as the main site: no cookies, no third-party
+// script, no form content. The rep code is deliberately NOT sent to analytics.
+function track(name, label) {
+  try {
+    fetch(EVENT_ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name, label: (label || '').slice(0, 120), path: location.pathname,
+        ref: document.referrer || '', vid: visitId()
+      }),
+      keepalive: true
+    }).catch(function () {});
+  } catch (e) {}
+}
+
+var activity = '';
+var submitting = false;
+
+function chooseActivity(a) {
+  activity = a;
+  Array.prototype.forEach.call(document.querySelectorAll('.gate-btn'), function (b) {
+    b.classList.toggle('chosen', b.getAttribute('data-activity') === a);
+  });
+  document.getElementById('gateHint').classList.add('hidden');
+  document.getElementById('activityLine').textContent = a === 'golf'
+    ? 'You picked Golf — the two-person scramble. Change your mind? Go back and pick cornhole.'
+    : 'You picked Cornhole — starts 12:30 PM. Change your mind? Go back and pick golf.';
+  var form = document.getElementById('inviteForm');
+  form.classList.remove('hidden');
+  var first = document.getElementById('dispensary');
+  if (first) first.focus();
+  syncSubmit();
+  track('invite_activity', a);
+}
+
+Array.prototype.forEach.call(document.querySelectorAll('.gate-btn'), function (b) {
+  b.addEventListener('click', function () { chooseActivity(b.getAttribute('data-activity')); });
+});
+
+function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+
+// Mirror of the server's rules, so the guest sees the problem immediately
+// instead of after a round trip. The server still enforces all of it.
+function problems() {
+  var p = [];
+  if (!activity) p.push('Choose Golf or Cornhole.');
+  if (!val('dispensary')) p.push('Dispensary name is required.');
+  if (!val('p1name')) p.push("Player 1's name is required.");
+  if (!val('p2name')) p.push("Player 2's name is required.");
+  if (!val('p1email')) p.push('Email is required.'); else if (!isEmail(val('p1email'))) p.push('That email does not look right.');
+  if (!val('p1phone')) p.push('Phone is required.');
+  if (!document.getElementById('consentFee').checked) p.push('Please confirm the $50 per person entry fee.');
+  return p;
+}
+function syncSubmit() {
+  var btn = document.getElementById('submitBtn');
+  if (!btn) return;
+  var ready = problems().length === 0;
+  btn.disabled = !ready;
+  btn.textContent = ready ? 'Claim our spot →' : 'Complete the form to continue';
+}
+
+['dispensary', 'teamName', 'p1name', 'p2name', 'p1email', 'p1phone'].forEach(function (id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('input', syncSubmit);
+});
+document.getElementById('consentFee').addEventListener('change', function () { syncSubmit(); track('invite_fee_toggle', this.checked ? 'on' : 'off'); });
+
+function submitInvite() {
+  if (submitting) return;
+  var errs = problems();
+  var box = document.getElementById('err');
+  if (errs.length) {
+    box.style.display = 'block';
+    box.innerHTML = errs.map(function (e) { return '&bull; ' + e; }).join('<br>');
+    return;
+  }
+  box.style.display = 'none';
+  var btn = document.getElementById('submitBtn');
+  submitting = true;
+  btn.disabled = true;
+  btn.textContent = 'Claiming your spot…';
+  track('invite_submit_attempt', activity);
+
+  var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 20000) : null;
+
+  fetch(SUBMIT_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      rep: REP_CODE,
+      afternoon_activity: activity,
+      dispensary_name: val('dispensary'),
+      team_name: val('teamName'),
+      p1_name: val('p1name'),
+      p2_name: val('p2name'),
+      p1_email: val('p1email'),
+      p1_phone: val('p1phone'),
+      consent_fee: document.getElementById('consentFee').checked
+    }),
+    signal: ctrl ? ctrl.signal : undefined
+  })
+  .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+  .then(function (res) {
+    if (timer) clearTimeout(timer);
+    if (!res.ok || !res.body.success) {
+      // Only a transport/validation failure reaches here. A duplicate or an
+      // over-allocation is still a success server-side — the collector never
+      // suppresses a signup, so there is deliberately no branch for either.
+      var msg = (res.body && res.body.errors) ? res.body.errors.join(' ') : 'Something went wrong. Please try again.';
+      throw new Error(msg);
+    }
+    track('invite_submit_success', activity);
+    document.getElementById('inviteForm').classList.add('hidden');
+    document.getElementById('gateStep').classList.add('hidden');
+    document.getElementById('successScreen').style.display = 'block';
+    document.getElementById('successScreen').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  })
+  .catch(function (e) {
+    if (timer) clearTimeout(timer);
+    submitting = false;
+    btn.disabled = false;
+    btn.textContent = 'Claim our spot →';
+    box.style.display = 'block';
+    box.textContent = e.message || 'Something went wrong. Please try again.';
+    track('invite_submit_error', '');
+  });
+}
+document.getElementById('submitBtn').addEventListener('click', submitInvite);
+
+track('invite_pageview', REP_CODE ? 'with_code' : 'no_code');
+</script>
+</body>
+</html>
