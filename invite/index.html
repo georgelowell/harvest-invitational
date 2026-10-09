@@ -107,7 +107,7 @@ footer a{color:var(--gold-deep)}
       <p class="hint" id="activityLine" style="margin-top:0"></p>
       <div class="rule"></div>
 
-      <div class="frow">
+      <div class="frow" id="dispensaryRow">
         <label for="dispensary">Dispensary Name *</label>
         <input type="text" id="dispensary" autocomplete="organization" placeholder="e.g. The Dispensary NYC" required>
       </div>
@@ -181,6 +181,14 @@ var REP_CODE = (function () {
   } catch (e) { return ''; }
 })();
 
+var IS_CAM = (REP_CODE === 'myjanyrd');
+if (IS_CAM) {
+  var dRow = document.getElementById('dispensaryRow');
+  if (dRow) dRow.classList.add('hidden');
+  var dInput = document.getElementById('dispensary');
+  if (dInput) dInput.removeAttribute('required');
+}
+
 var SUBMIT_ENDPOINT = 'https://croptober-collector-844482685472.us-central1.run.app/invite-submit';
 var EVENT_ENDPOINT = 'https://croptober-collector-844482685472.us-central1.run.app/event';
 
@@ -220,7 +228,7 @@ function chooseActivity(a) {
     : 'You picked Cornhole — starts 12:30 PM. Change your mind? Go back and pick golf.';
   var form = document.getElementById('inviteForm');
   form.classList.remove('hidden');
-  var first = document.getElementById('dispensary');
+  var first = IS_CAM ? document.getElementById('teamName') : document.getElementById('dispensary');
   if (first) first.focus();
   syncSubmit();
   track('invite_activity', a);
@@ -238,7 +246,7 @@ function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
 function problems() {
   var p = [];
   if (!activity) p.push('Choose Golf or Cornhole.');
-  if (!val('dispensary')) p.push('Dispensary name is required.');
+  if (!IS_CAM && !val('dispensary')) p.push('Dispensary name is required.');
   if (!val('p1name')) p.push("Player 1's name is required.");
   if (!val('p2name')) p.push("Player 2's name is required.");
   if (!val('p1email')) p.push('Email is required.'); else if (!isEmail(val('p1email'))) p.push('That email does not look right.');
@@ -285,7 +293,7 @@ function submitInvite() {
     body: JSON.stringify({
       rep: REP_CODE,
       afternoon_activity: activity,
-      dispensary_name: val('dispensary'),
+      dispensary_name: IS_CAM ? (val('dispensary') || 'Last Prisoner Project') : val('dispensary'),
       team_name: val('teamName'),
       p1_name: val('p1name'),
       p2_name: val('p2name'),
